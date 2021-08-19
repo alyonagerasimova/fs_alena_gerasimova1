@@ -14,6 +14,17 @@ header {
     background-size: cover;
     height: 782px;
     position: relative;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.2;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .container {
@@ -42,7 +53,7 @@ nav {
     align-items: center;
     text-transform: uppercase;
     color: #FFFFFF;
-    text-decoration: none;
+    text-decoration-line: none;
 }
 
 .button-login {
@@ -66,13 +77,8 @@ nav {
 
 }
 
-.menu-link:hover {
-    color: #212121;
-    text-decoration: none;
-}
-
 .menu-link {
-    text-decoration: none;
+    text-decoration-line: none;
     font-size: 14px;
     font-weight: 300;
     text-transform: uppercase;
@@ -83,6 +89,12 @@ nav {
     color: #FFFFFF;
     padding: 12px;
     cursor: pointer;
+    transition-property: color;
+    transition-duration: 1s;
+}
+
+.menu-link:hover {
+    color: #212121;
 }
 
 .main-name {
@@ -116,7 +128,7 @@ nav {
     background: #FFFFFF;
     border-radius: 6px;
     color: #ED4C5C;
-    text-decoration: none;
+    text-decoration-line: none;
     text-transform: uppercase;
     font-family: Lato, sans-serif;
     font-style: normal;
@@ -125,10 +137,16 @@ nav {
     text-align: center;
     margin: 202px 44% 0;
     padding: 17px 52px;
+    transition-property: border-top-left-radius, border-bottom-right-radius;
+}
+
+.button-slider-link:hover {
+    border-top-left-radius: 100% 20px;
+    border-bottom-right-radius: 100% 20px;
 }
 
 .button-login-link {
-    text-decoration: none;
+    text-decoration-line: none;
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 6px;
@@ -136,14 +154,18 @@ nav {
     height: 40px;
     padding: 11px 29px;
     font-family: Lato, sans-serif;
-    font-style: normal;
-    font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     align-items: center;
     text-align: center;
     text-transform: uppercase;
     color: #FFFFFF;
+    transition-property: border, background-color;
+}
+
+.button-login-link:hover {
+    outline: 5px solid #ff4a1f;
+    outline-offset: 2px;
 }
 
 .first-block {
@@ -293,7 +315,7 @@ table {
     font-size: 12px;
     line-height: 150%;
     color: #ED4C5C;
-    text-decoration: none;
+    text-decoration-line: none;
 }
 
 .technology-block {
@@ -413,12 +435,56 @@ table {
 }
 
 .text-contact {
-    padding: 0 114px 0 165px;
-    width: calc(100% - 995px);
+    grid-area: text-contact;
+    width: inherit;
 }
 
-.contact {
-    height: 500px;
+form {
+    grid-area: form;
+}
+
+.first-name, .last-name {
+    border-radius: 6px;
+}
+
+.first-name {
+    grid-area: first-name;
+}
+
+.last-name {
+    grid-area: last-name;
+}
+
+.first-name input {
+    width: 255px;
+    height: 60px;
+}
+
+.last-name input {
+    width: 255px;
+    height: 60px;
+}
+
+input {
+    width: 540px;
+    height: 60px;
+}
+
+select {
+    width: 540px;
+    height: 60px;
+}
+
+.number {
+    grid-area: number;
+}
+
+.select-service {
+    grid-area: select-service;
+}
+
+.button-submit {
+    grid-area: button-submit;
 }
 
 .contact-form {
@@ -427,59 +493,13 @@ table {
     display: grid;
     grid-template-columns: 255px 255px;
     grid-template-rows: 60px 60px 60px 50px;
-    grid-template-areas:
-    ".first-name .last-name"
-    ".number .number"
-    ".select-service .select-service"
-    ".button-submit . ";
+    grid-template-areas: "first-name last-name"
+                         "number number"
+                         "select-service select-service"
+                         "button-submit . ";
     justify-items: start;
     grid-column-gap: 30px;
     grid-row-gap: 24px;
-}
-
-.first-name, .last-name {
-    border: 1px solid #333333;
-    box-sizing: border-box;
-    border-radius: 6px;
-}
-
-.first-name {
-    grid-row: 1;
-    grid-column: 1;
-}
-
-.first-name input{
-    width: 255px;
-    height: 60px;
-}
-
-.last-name input{
-    width: 255px;
-    height: 60px;
-}
-
-input{
-    width: 540px;
-    height: 60px;
-}
-
-select{
-    width: 540px;
-    height: 60px;
-}
-
-.number {
-    grid-row: 2;
-    grid-column: 1/3;
-}
-
-.select-service {
-    grid-row: 3;
-    grid-column: 1/3;
-}
-
-.button-submit{
-    grid-row: 4;
 }
 
 button {
@@ -492,36 +512,32 @@ button {
     color: #FFFFFF;
 }
 
-footer {
-    margin-top: 123px;
-    height: 435px;
-    margin-right: 196px;
+ .footer-col-first {
+    grid-area: footer-col-first;
 }
 
-.find-us {
-    display: inline-block;
-    margin-left: 166px;
+ .footer-col-second {
+    grid-area: footer-col-second;
 }
 
-.footer-col {
-    width: 259px;
-    padding-right: 30px;
-    float: left;
+ .footer-col-third {
+    grid-area: footer-col-third;
 }
 
-.footer-col-second {
-    width: 254px;
+ .footer-col-fourth {
+    grid-area: footer-col-fourth;
 }
 
-.footer-col-third {
-    width: 122px;
-    padding-right: 166px;
-}
-
-.footer-col-fourth {
-    width: 216px;
-    float: right;
-    padding-right: 0;
+.form-with-footer {
+    display: grid;
+    margin-left: 176px;
+    grid-template-columns: 254px 254px 254px 254px;
+    grid-template-rows: 500px 435px;
+    grid-template-areas: "text-contact text-contact form form"
+                         "footer-col-first footer-col-second footer-col-third footer-col-fourth";
+    justify-items: start;
+    grid-column-gap: 30px;
+    grid-row-gap: 45px;
 }
 
 .footer-name {
@@ -546,3 +562,4 @@ footer {
 button {
     cursor: pointer;
 }
+
