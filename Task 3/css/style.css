@@ -3,8 +3,14 @@
     padding: 0;
 }
 
+:root{
+    --primary-color: #FFFFFF;
+    --primary-color-2: #101010;
+    --primary-font-family: Lato, sans-serif;
+}
+
 body {
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     width: 100%;
     min-width: 1440px;
 }
@@ -45,14 +51,14 @@ nav {
 }
 
 .logo-name {
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
     align-items: center;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: var(--primary-color);
     text-decoration-line: none;
 }
 
@@ -86,7 +92,7 @@ nav {
     height: 22px;
     line-height: 17px;
     align-items: center;
-    color: #FFFFFF;
+    color: var(--primary-color);
     padding: 12px;
     cursor: pointer;
     transition-property: color;
@@ -99,24 +105,24 @@ nav {
 
 .main-name {
     padding-top: 177px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-weight: bold;
     font-size: 72px;
     line-height: 86px;
     letter-spacing: 0.05em;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--primary-color);
 
 }
 
 .slider-unit {
     position: absolute;
     padding-top: 39px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-size: 24px;
     font-weight: 600;
     line-height: 150%;
-    color: #FFFFFF;
+    color: var(--primary-color);
     text-align: center;
     width: 100%;
     min-width: 540px;
@@ -125,12 +131,12 @@ nav {
 
 .button-slider-link {
     display: block;
-    background: #FFFFFF;
+    background: var(--primary-color);
     border-radius: 6px;
     color: #ED4C5C;
     text-decoration-line: none;
     text-transform: uppercase;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -147,19 +153,19 @@ nav {
 
 .button-login-link {
     text-decoration-line: none;
-    border: 1px solid #FFFFFF;
+    border: 1px solid var(--primary-color);
     box-sizing: border-box;
     border-radius: 6px;
     width: 100px;
     height: 40px;
     padding: 11px 29px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-size: 14px;
     line-height: 17px;
     align-items: center;
     text-align: center;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: var(--primary-color);
     transition-property: border, background-color;
 }
 
@@ -181,7 +187,7 @@ nav {
 
 .heading {
     height: 107px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -191,7 +197,7 @@ nav {
 
 .description {
     height: 115px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -204,7 +210,7 @@ nav {
 .more {
     color: #ED4C5C;
     padding-top: 4px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -218,7 +224,7 @@ nav {
     float: left;
     padding-right: 125px;
     width: calc(100% - 665px);
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
 }
 
 .heading-block {
@@ -226,7 +232,7 @@ nav {
     text-align: center;
     width: 100%;
     height: 55px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -239,7 +245,7 @@ nav {
     text-align: center;
     width: 100%;
     height: 55px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -271,24 +277,20 @@ nav {
     margin-left: 29px;
     top: 1620px;
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: var(--primary-color);
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-table {
-    text-align: center;
-}
-
 .overview-name {
     padding: 33px 32px 20px 32px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
-    color: #101010;
+    color: var(--primary-color-2);
 }
 
 .overview-text {
@@ -296,20 +298,20 @@ table {
     height: 57px;
     padding-left: 32px;
     top: 1713px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 150%;
     text-align: center;
-    color: #101010;
+    color: var(--primary-color-2);
 }
 
 .read {
     width: 293px;
     height: 18px;
     text-align: center;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
@@ -332,7 +334,6 @@ table {
     height: 226px;
     padding-right: 30px;
     width: 255px;
-
 }
 
 .option {
@@ -353,7 +354,7 @@ table {
 }
 
 .technology-text {
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -364,10 +365,10 @@ table {
 
 .technology-name {
     padding: 19px 71px 10px 71px;
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 700;
-    color: #101010;
+    color: var(--primary-color-2);
     text-align: center;
 }
 
@@ -410,16 +411,16 @@ table {
 }
 
 .follow-text-heading {
-    color: #FFFFFF;
-    font-family: Lato, sans-serif;
+    color: var(--primary-color);
+    font-family: var(--primary-font-family);
     font-weight: 600;
     font-size: 36px;
     line-height: 43px;
 }
 
 .follow-text-description {
-    font-family: Lato, sans-serif;
-    color: #FFFFFF;
+    font-family: var(--primary-font-family);
+    color: var(--primary-color);
     font-weight: normal;
     font-size: 14px;
     line-height: 140%;
@@ -509,7 +510,7 @@ button {
     border: 1px solid #ED4C5C;
     box-sizing: border-box;
     border-radius: 6px;
-    color: #FFFFFF;
+    color: var(--primary-color);
 }
 
  .footer-col-first {
@@ -541,22 +542,22 @@ button {
 }
 
 .footer-name {
-    font-family: Lato, sans-serif;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
-    color: #101010;
+    color: var(--primary-color-2);
     padding-bottom: 33px;
 }
 
 .footer-name-description {
-    font-family: Lato, sans-serif;;
+    font-family: var(--primary-font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 150%;
-    color: #101010;
+    color: var(--primary-color-2);
 }
 
 button {
