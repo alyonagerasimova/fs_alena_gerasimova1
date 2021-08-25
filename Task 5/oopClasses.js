@@ -6,6 +6,7 @@
 // Продемонстрировать создание / удаление / редактирование сущностей через вывод на консоль (UI не нужен).
 
 class ElectronicsStore {
+
     constructor(name, store) {
         this._name = name;
         this._store = store;
@@ -37,6 +38,7 @@ class ElectronicsStore {
 }
 
 class Product {
+
     constructor(nameProduct, assignment) {
         this._nameProduct = nameProduct;
         this._assignment = assignment;
@@ -125,6 +127,16 @@ class ProductsModel extends Product {
 }
 
 class Specifications {
+
+    constructor(year, producer, countryProducer, guarantee, size, material) {
+        this._year = +year;
+        this._producer = producer;
+        this._countryProducer = countryProducer;
+        this._guarantee = guarantee;
+        this._size = size;
+        this._material = material;
+    }
+
     get guarantee() {
         return this._guarantee;
     }
@@ -147,14 +159,6 @@ class Specifications {
 
     set material(value) {
         this._material = value;
-    }
-    constructor(year, producer, countryProducer, guarantee, size, material) {
-        this._year = +year;
-        this._producer = producer;
-        this._countryProducer = countryProducer;
-        this._guarantee = guarantee;
-        this._size = size;
-        this._material = material;
     }
 
     get year() {
@@ -183,6 +187,13 @@ class Specifications {
 }
 
 class Customer {
+
+    constructor(name, phone, email) {
+        this._name = name;
+        this._phone = phone;
+        this._email = email;
+    }
+
     get phone() {
         return this._phone;
     }
@@ -198,11 +209,6 @@ class Customer {
     set email(value) {
         this._email = value;
     }
-    constructor(name, phone, email) {
-        this._name = name;
-        this._phone = phone;
-        this._email = email;
-    }
 
     get name() {
         return this._name;
@@ -214,6 +220,7 @@ class Customer {
 }
 
 class Order {
+
     constructor(customer, products, orderNumber) {
         this._customer = customer;
         this._products = products;
@@ -248,16 +255,16 @@ class Order {
 
 const products = [];
 
-products[0] = new Product('Фен','Сушка волос');
+products[0] = new Product('Фен', 'Сушка волос');
 products[1] = new Product();
 products[1].nameProduct = 'Утюг';
 products[1].assignment = 'Глажка одежды';
 
-let electronicsStore = new ElectronicsStore('dns',products);
-const specific = new Specifications(2020,'Philips','China','1 year',`78*274*174mm`);
-let model = new ProductsModel(products[0].nameProduct,products[0].assignment);
-let customer1 = new Customer('Ivan',89279032840);
-let order1 = new Order(customer1,products[1],1234);
+let electronicsStore = new ElectronicsStore('dns', products);
+const specific = new Specifications(2020, 'Philips', 'China', '1 year', `78*274*174mm`);
+let model = new ProductsModel(products[0].nameProduct, products[0].assignment);
+let customer1 = new Customer('Ivan', 89279032840);
+let order1 = new Order(customer1, products[1], 1234);
 
 console.log(`Магазин электроники:`);
 console.log(electronicsStore);
