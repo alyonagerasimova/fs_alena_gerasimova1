@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle, #d5f6fa, #61e8fd);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.container {
+    display: grid;
+    width: 330px;
+    height: 500px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
+    padding: 4px;
+    font-family: "Tahoma", sans-serif;
+    max-width: 360px;
+    background: #eeeeee;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px rgba(103, 103, 103, 0.2), -2px -2px 3px rgba(72, 72, 72, 0.2);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+input{
+    padding: 0;
+    grid-column: 1/-1;
+    font-size: 30px;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    background: #fff;
+
+}
+
+.input{
+    padding: 0;
+    grid-column: 1/-1;
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    margin: 10px auto;
+    box-shadow: inset 1px 1px 1px rgba(0,0,0,0.3), inset -1px -1px 1px rgba(0,0,0,0.3);
+    border: 1px solid black;
+}
+
+.equal{
+    grid-column: 4;
+    grid-row: 6/8;
+}
+
+.zero{
+    grid-column: 1/3;
+}

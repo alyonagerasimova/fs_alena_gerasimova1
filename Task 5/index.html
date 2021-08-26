@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="item input">
+        <form name="form"><label>
+            <input type="text" name="textview" readonly >
+        </label></form>
+    </div>
+    <div class="item clear" onclick="clearAll()">C</div>
+    <div class="item delete" onclick="deleteSymbol()">&larr;</div>
+    <div class="item" onclick="input('+')">+</div>
+    <div class="item" onclick="input('-')">-</div>
+    <div class="item" onclick="input('*')">&times;</div>
+    <div class="item" onclick="input('/')">&divide;</div>
+    <div class="item" onclick="operation('^2')">x&sup2;</div>
+    <div class="item" onclick="operation('sqrt')">&radic;</div>
+    <div class="item" onclick="input('7')">7</div>
+    <div class="item" onclick="input('8')">8</div>
+    <div class="item" onclick="input('9')">9</div>
+    <div class="item" onclick="input('(')">(</div>
+    <div class="item" onclick="input('4')">4</div>
+    <div class="item" onclick="input('5')">5</div>
+    <div class="item" onclick="input('6')">6</div>
+    <div class="item" onclick="input(')')">)</div>
+    <div class="item" onclick="input('1')">1</div>
+    <div class="item" onclick="input('2')">2</div>
+    <div class="item" onclick="input('3')">3</div>
+    <div class="item equal" onclick="calc()">=</div>
+    <div class="item zero" onclick="input('0')">0</div>
+    <div class="item" onclick="input('.')">.</div>
+
+</div>
+<script src="script.js"></script>
+<script src="oopClasses.js"></script>
+</body>
+</html>
