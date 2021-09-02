@@ -11,7 +11,7 @@ table {
     box-sizing: border-box;
 }
 
-tr.usual{
+.usual td {
     background: #ffd6cf;
     border-bottom: 1px solid #fff;
     color: #000;
@@ -23,7 +23,7 @@ tr.usual{
     padding: 8px;
 }
 
-td input{
+td input {
     size: inherit;
     background: inherit;
     border: 0;
@@ -49,12 +49,14 @@ tbody {
     border-color: inherit;
 }
 
-.plus{
+.plus {
     cursor: pointer;
     margin-left: 84%;
 }
 
-.button-save{
-
+.button-format {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 8px;
 }
 
