@@ -1,51 +1,33 @@
-const btn = document.querySelector('.plus');
 const tbody = document.getElementsByTagName("tbody")[0];
-const classNameForButton = 'button-format';
+const buttonClassName = 'button-format';
+const manageDivClassName = 'table-expenses__row-manage';
+const rowClassName = 'table-expenses__row';
 
-btn.addEventListener("click", createRow);
+document.querySelector('.table-expenses__plus-button').addEventListener("click", createRow);
 
 function createSaveButton(row) {
     const saveButton = document.createElement('button');
     saveButton.textContent = "Save";
-    saveButton.className = classNameForButton;
-    //saveButton.setAttribute('disabled',disabled);
+    saveButton.className = buttonClassName;
     saveButton.addEventListener('click', (e) => saveChanges(row, e.currentTarget));
-    // for (let i = 0; i < row.children.length - 1; i++) {
-    //     if (row.getElementsByTagName('input')[i].value === '') {
-    //         saveButton.setAttribute('disabled',disabled);
-    //     }
-    //     console.log(row.getElementsByTagName('input')[i].value);
-    // }
     return saveButton;
 }
 
 function createMinusButton(row) {
     const minusButton = document.createElement('button');
     minusButton.innerHTML = '&mdash;';
-    minusButton.className = classNameForButton;
+    minusButton.className = buttonClassName;
     minusButton.addEventListener('click', () => deleteRowInTable(row));
     return minusButton;
 }
 
 function createDiv() {
     const manageDiv = document.createElement('div');
-    manageDiv.className = 'button-format';
+    manageDiv.className = manageDivClassName;
     return manageDiv;
 }
 
-function makeRow() {
-    const row = document.createElement('tr');
-    row.className = 'usual';
-
-    const saveButton = createSaveButton(row);
-
-    const minusButton = createMinusButton(row);
-
-    const manageDiv = createDiv();
-
-    manageDiv.append(minusButton);
-    manageDiv.append(saveButton);
-
+function createInputsList() {
     const dateInput = document.createElement('input');
     dateInput.type = "date";
 
@@ -61,25 +43,33 @@ function makeRow() {
     const utilitiesInput = document.createElement('input');
     utilitiesInput.type = "number";
 
-    let td = document.createElement("td");
-    td.append(dateInput);
-    row.append(td);
+    return [
+        dateInput,
+        transportInput,
+        productsInput,
+        otherShopsInput,
+        utilitiesInput
+    ];
+}
 
-    td = document.createElement("td");
-    td.append(transportInput);
-    row.append(td);
+function makeRow() {
+    const row = document.createElement('tr');
+    row.className = rowClassName;
 
-    td = document.createElement("td");
-    td.append(productsInput);
-    row.append(td);
+    const saveButton = createSaveButton(row);
+    const minusButton = createMinusButton(row);
+    const manageDiv = createDiv();
 
-    td = document.createElement("td");
-    td.append(otherShopsInput);
-    row.append(td);
+    manageDiv.append(minusButton);
+    manageDiv.append(saveButton);
 
-    td = document.createElement("td");
-    td.append(utilitiesInput);
-    row.append(td);
+   const inputElements = createInputsList();
+
+   inputElements.forEach(element => {
+       const td = document.createElement("td");
+       td.append(element);
+       row.append(td);
+   });
 
     row.append(manageDiv);
 
@@ -91,43 +81,33 @@ function createRow() {
 }
 
 function saveChanges(row, saveButton) {
-
-    const newRow = document.createElement('tr');
-    newRow.className = 'usual';
-    tbody.appendChild(newRow);
-    let rowTd;
-
-    for (let td of row.getElementsByTagName('input')) {
-        rowTd = document.createElement("td");
-        rowTd.textContent = td.value;
-        newRow.append(rowTd);
-    }
+    Array.from(row.getElementsByTagName('input')).forEach(input => {
+        const parent = input.parentElement;
+        const value = input.value;
+        parent.innerHTML = value;
+    });
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit Row";
-
-    const div = createDiv();
-
-    div.append(createMinusButton(newRow));
-    div.append(editButton);
-    newRow.append(div);
+    editButton.addEventListener("click", (e) => editRow(row, editButton));
+    const oldDiv = row.getElementsByTagName("div")[0];
     saveButton.remove();
-    row.remove();
-
-    editButton.addEventListener("click", (e) => editRow(newRow, e.currentTarget));
+    oldDiv.append(editButton);
 }
 
-function editRow(newRow,editButton) {
+function editRow(row, editButton) {
     editButton.remove();
-    const saveButton = createSaveButton(newRow);
-    newRow.lastChild.append(saveButton);
-    let rowEdit = makeRow();
+    const saveButton = createSaveButton(row);
 
-    for (let i = 0; i < newRow.children.length - 1; i++) {
-        rowEdit.getElementsByTagName('input')[i] = newRow.childNodes[i].innerHTML;
-        newRow.childNodes[i].innerHTML = '';
-        newRow.childNodes[i].append(rowEdit.getElementsByTagName('input')[i]);
-        console.log(newRow.children.length - 1);
+    row.lastChild.append(saveButton);
+
+    let inputs = createInputsList();
+
+    for (let i = 0; i < row.children.length - 1; i++) {
+        const node = row.childNodes[i];
+        inputs[i].value = node && node.textContent;
+        node.textContent = '';
+        node.append(inputs[i]);
     }
 }
 
