@@ -1,5 +1,5 @@
 const tbody = document.getElementsByTagName("tbody")[0];
-const buttonClassName = 'button-format';
+const buttonClassName = 'table-expenses__button';
 const manageDivClassName = 'table-expenses__row-manage';
 const rowClassName = 'table-expenses__row';
 

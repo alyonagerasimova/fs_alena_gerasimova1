@@ -33,7 +33,7 @@ tbody {
     padding: var(--var-default-td-padding);
     font-size: 15px;
     background: rgb(255, 116, 84);
-    border-top: 4px solid rgba(255, 255, 255);
+    border-top: 4px solid white;
     border-bottom: 1px solid #ffffff;
     color: #fff;
 }
@@ -50,8 +50,7 @@ tbody {
 .table-expenses__row td {
     min-width: 205px;
     padding: var(--var-default-td-padding);
-    background: #ffcdc9;
-    color: #ffcece;
+    background: #ffd1c9;
     border-top: 2px solid rgba(255, 255, 255, 0.8);
 }
 
@@ -61,7 +60,7 @@ tbody {
 
 .table-expenses__row td input {
     size: inherit;
-    background: rgb(255, 234, 230);;
+    background: rgb(255, 224, 217);;
     border: 1px solid rgb(252, 242, 242);
 }
 
@@ -74,9 +73,12 @@ tbody {
     margin-left: 10px;
 }
 
-.button-format {
+.table-expenses__button {
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 8px;
+    height: 32px;
+    width: 70px;
+    align-items: center;
 }
 
