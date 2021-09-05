@@ -1,0 +1,33 @@
+*{
+    padding: 2px;
+    margin: 0;
+    color: #ffffff;
+}
+
+body{
+    font-family: "Tahoma", sans-serif;
+}
+
+.forecast{
+
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+html[data-theme="day"] .weather,
+.weather{
+    background: linear-gradient(360deg, #3594bf 0%, rgba(255, 255, 255, 0) 100%), #53a6cb;
+}
+
+html[data-theme="night"] .weather {
+    background: linear-gradient(360deg, #55707e 0%, rgba(255, 255, 255, 0) 100%), #042232;
+}
+
+.current__weather__icon{
+
+}
+
+.current__weather{
+    text-align: center;
+}
