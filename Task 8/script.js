@@ -12,6 +12,11 @@ const currentDate = new Date();
 chooseDate.setAttribute('min', new Date().toISOString().substr(0,10).toString());
 chooseDate.setAttribute('max', `${currentDate.getFullYear()}-0${currentDate.getMonth()}-${currentDate.getDate() + 5}`);
 
+//Вынести установку диапазона дат с прогнозом в отдельную функцию
+//Добавить кнопку обновить
+//в каррент выводить иконку наиболее часто встречающуюся, если был выбран не сегодняшний день, в противном случае вывести то описание и иконку,
+//когда время запроса наиболее близко к одному из предоставляемых часов
+//
 
 //list[0].dt_txt="2021-09-06 12:00:00"
 //list[1].dt_txt="2021-09-06 15:00:00"
