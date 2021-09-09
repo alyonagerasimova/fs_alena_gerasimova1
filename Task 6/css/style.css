@@ -469,6 +469,7 @@ form {
 input {
     width: 570px;
     height: 60px;
+    padding-left: 10px;
 }
 
 input.invalid, textarea.invalid{
@@ -496,6 +497,7 @@ input.valid, textarea.valid{
 textarea{
     width: 570px;
     height: 70px;
+    padding-left: 10px;
 }
 
 .button-submit {
@@ -581,4 +583,3 @@ button {
 button {
     cursor: pointer;
 }
-

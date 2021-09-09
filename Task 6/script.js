@@ -24,19 +24,26 @@ for (let key in data) {
     data[key].value = localStorage.getItem(key);
 }
 
+
 btn.addEventListener("click", function (event) {
 
     removeError();
 
     if (!checkNotNull()) {
+        let invalidVar = document.querySelectorAll('.invalid');
+        let invalidVarArr = [];
+        for (let i = 0; i < invalidVar.length; i++) {
+            invalidVarArr[i] = invalidVar.item(i).getAttribute('title');
+        }
+        alert(`Поля ${invalidVarArr} заполнены не верно, пожалуйста исправьте`);
         event.preventDefault();
     } else {
-        alert(data.firstName.value + " " + data.lastName.value + ", спасибо за обращение!");
         let name = "fullName";
         let value = data.firstName.value + " " + data.lastName.value;
         if (document.cookie === encodeURIComponent(name) + '=' + encodeURIComponent(value)) {
             alert(data.firstName.value + " " + data.lastName.value + ", ваше обращение обрабатывается!");
         } else {
+            alert(data.firstName.value + " " + data.lastName.value + ", спасибо за обращение!");
             document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
         }
         clearLocalStorage();
