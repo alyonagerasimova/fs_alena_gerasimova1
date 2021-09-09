@@ -45,3 +45,24 @@ img{
 .current img{
     width: 8%;
 }
+
+.other{
+    display: flex;
+}
+
+.humidity{
+    padding: 0 50px;
+}
+
+.update{
+    text-align: center;
+
+    margin: 25px;
+    display: block;
+}
+
+.update button{
+    padding: 7px;
+    background: antiquewhite;
+    border-radius: 6px;
+}

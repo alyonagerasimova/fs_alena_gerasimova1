@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+<body>
+<div class="weather">
+
+    <div class="current">
+        <div class="current__header">
+            <label>Город:
+                <input name="city">
+                <datalist id="cities">
+
+                </datalist>
+            </label>
+
+            <label>Дата:
+                <input type="date" class="date">
+            </label>
+            <button>Найти</button>
+        </div>
+
+        <div class="current__city"></div>
+        <div class="current__weather__icon"></div>
+        <div class="current__description"></div>
+        <div class="current__temperature"></div>
+    </div>
+
+    <div class="forecast">
+
+    </div>
+
+    <div class="other">
+        <div class="humidity">
+            <div class="humidity__name">Влажность</div>
+            <div class="humidity__unit">%</div>
+        </div>
+
+        <div class="wind">
+            <div class="wind__name">Ветер</div>
+            <div class="wind__unit">км/ч</div>
+        </div>
+    </div>
+    <div class="update">
+        <button>Обновить</button>
+    </div>
+
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

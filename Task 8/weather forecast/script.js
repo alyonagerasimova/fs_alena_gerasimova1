@@ -6,28 +6,26 @@ const degree = '˚';
 const percent = '%';
 const velocity = ' км/ч';
 const chooseDate = document.querySelector('.date');
-
-const currentDate = new Date();
-
-chooseDate.setAttribute('min', new Date().toISOString().substr(0,10).toString());
-chooseDate.setAttribute('max', `${currentDate.getFullYear()}-0${currentDate.getMonth()}-${currentDate.getDate() + 5}`);
-
-//Вынести установку диапазона дат с прогнозом в отдельную функцию
-//Добавить кнопку обновить
-//в каррент выводить иконку наиболее часто встречающуюся, если был выбран не сегодняшний день, в противном случае вывести то описание и иконку,
-//когда время запроса наиболее близко к одному из предоставляемых часов
-//
-
-//list[0].dt_txt="2021-09-06 12:00:00"
-//list[1].dt_txt="2021-09-06 15:00:00"
+const update = document.querySelector('.update button');
+let city;
+setMinAndMaxDate();
+getCitiesList();
 
 buttonFind.addEventListener('click', getCurrentCity);
+update.addEventListener("click", goFetch);
+
+function setMinAndMaxDate() {
+    let futureDate = new Date().setTime(new Date().getTime() + (24 * 60 * 60 * 1000) * 5);
+    let dateLast = new Date(futureDate);
+    chooseDate.setAttribute('min', new Date().toISOString().substr(0, 10));
+    chooseDate.setAttribute('max', dateLast.toISOString().substr(0, 10));
+}
+
 
 // const url = `https://bulk.openweathermap.org/sample/city.list.json.gz/city.list.json&appid=${apiKey}`;
 // let xhr = new XMLHttpRequest();
 // xhr.open('get',url,true);
 // xhr.send()
-getCitiesList();
 
 function getCitiesList() {
     $.getJSON('city.list.json', function (data) {
@@ -38,8 +36,17 @@ function getCitiesList() {
 }
 
 function getCurrentCity() {
-    let city = document.querySelector('input').value;
+    try {
+        city = document.querySelector('input').value;
+        console.log(city);
+    } catch (error) {
+        console.log('Город не найден!', error);
+    }
     //city = 'Samara, ru'
+    goFetch();
+}
+
+function goFetch() {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`, {
         cache: "force-cache",
         keepalive: true
@@ -53,10 +60,10 @@ function getCurrentCity() {
 }
 
 function getStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response)
+    if (response.ok) {
+        return Promise.resolve(response);
     } else {
-        return Promise.reject(new Error(response.statusText))
+        return Promise.reject(response.text());
     }
 }
 
@@ -80,8 +87,6 @@ function isDay(data) {
 function getWeather(data) {
     console.log(data);
     const index = getIndex(data)[0];
-    //console.log(index);
-    //console.log(data.list[0].dt_txt.substr(0,10));
     renderDayOrNight(data);
     renderForecast(data);
     document.querySelector('.current__city').innerHTML = data.city.name + " " + chooseDate.value;
@@ -98,9 +103,6 @@ function getValueWithUnit(value, unit) {
 
 function renderForecast(data) {
     let forecastDataContainer = document.querySelector('.forecast');
-    // let forecastTime = document.querySelectorAll('.forecast__time');
-    // let forecastIcon = document.querySelectorAll('.forecast__icon');
-    // let forecastTemp = document.querySelectorAll('.forecast__temperature');
     const indexOfDataOnChooseDate = getIndex(data);
     let forecasts = '';
     for (let i = 0; i < indexOfDataOnChooseDate.length; i++) {
@@ -117,12 +119,7 @@ function renderForecast(data) {
           <div class="forecast__temperature">${getValueWithUnit(Math.round(temp), degree)}</div>
         </div>`;
         forecasts += template;
-
-        // forecastTime.item(i).textContent = hours[i] + ":00";
-        // forecastIcon.item(i).innerHTML = `<img src="img/${iconName}.png" alt="icon">`;
-        // forecastTemp.item(i).innerHTML = getValueWithUnit(Math.round(temp), degree);
     }
-
     forecastDataContainer.innerHTML = forecasts;
 }
 
