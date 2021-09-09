@@ -8,8 +8,9 @@ const velocity = ' км/ч';
 const chooseDate = document.querySelector('.date');
 const update = document.querySelector('.update button');
 let city;
+const imageCurrent = document.createElement('img');
+
 setMinAndMaxDate();
-getCitiesList();
 
 buttonFind.addEventListener('click', getCurrentCity);
 update.addEventListener("click", goFetch);
@@ -21,24 +22,9 @@ function setMinAndMaxDate() {
     chooseDate.setAttribute('max', dateLast.toISOString().substr(0, 10));
 }
 
-
-// const url = `https://bulk.openweathermap.org/sample/city.list.json.gz/city.list.json&appid=${apiKey}`;
-// let xhr = new XMLHttpRequest();
-// xhr.open('get',url,true);
-// xhr.send()
-
-function getCitiesList() {
-    $.getJSON('city.list.json', function (data) {
-        $.each(data, function () {
-            $('#cities').append('<option value="' + this.name + ', ' + this.country + '"/>');
-        });
-    });
-}
-
-function getCurrentCity() {
+async function getCurrentCity() {
     try {
         city = document.querySelector('input').value;
-        console.log(city);
     } catch (error) {
         console.log('Город не найден!', error);
     }
@@ -53,13 +39,13 @@ function goFetch() {
     })
         .then(getStatus)
         .then(getJson)
-        .then(getWeather)
+        .then(getCurrentWeather)
         .catch(function (error) {
             console.log('Request failed', error);
         });
 }
 
-function getStatus(response) {
+async function getStatus(response) {
     if (response.ok) {
         return Promise.resolve(response);
     } else {
@@ -84,17 +70,35 @@ function isDay(data) {
     return (now > sunrise && now < sunset);
 }
 
-function getWeather(data) {
+async function getCurrentWeather(data) {
     console.log(data);
-    const index = getIndex(data)[0];
+    const index = await getIndex(data)[0];
     renderDayOrNight(data);
-    renderForecast(data);
+    await renderForecast(data);
+    fetchIcon(data, imageCurrent, index);
+    //let image = document.querySelector('.current__weather__icon img').setAttribute('src',`${fetchIcon(data)}`);
     document.querySelector('.current__city').innerHTML = data.city.name + " " + chooseDate.value;
     document.querySelector('.current__description').innerHTML = data.list[index].weather[0]["description"];
-    document.querySelector('.current__weather__icon').innerHTML = `<img src="img/${data.list[index].weather[0]["icon"].substr(0, 2)}.png" alt="icon">`;
+    document.querySelector('.current__weather__icon').append(imageCurrent);
     document.querySelector('.current__temperature').innerHTML = getValueWithUnit(Math.round(data.list[index].main.temp), degree);
     document.querySelector('.humidity__unit').innerHTML = getValueWithUnit(data.list[index].main.humidity, percent);
     document.querySelector('.wind__unit').innerHTML = getValueWithUnit(data.list[index].wind.speed, velocity);
+}
+
+function fetchIcon(data, img, index) {
+    const url = `https://openweathermap.org/img/wn/${data.list[index].weather[0]["icon"]}@2x.png`;
+    let xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.onload = () => {
+        console.log(index);
+        if (xhr.status < 200 || xhr.status > 300) {
+            console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+        } else {
+            img.setAttribute("src", `${xhr.responseURL}`);
+            console.log(xhr.responseURL);
+        }
+    }
+    xhr.send();
 }
 
 function getValueWithUnit(value, unit) {
@@ -111,7 +115,7 @@ function renderForecast(data) {
         let icon = item.weather[0].icon;
         let iconName = icon.substr(0, 2);
         let temp = item.main.temp;
-        let hours = (i + indexOfDataOnChooseDate[0] === 0 ? 'Сейчас' : item.dt_txt.substr(11, 5));
+        let hours = item.dt_txt.substr(11, 5);
 
         let template = `<div class="forecast__item">
           <div class="forecast__time">${hours}</div>
