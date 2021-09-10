@@ -13,11 +13,8 @@ const iconWeather = document.createElement('img');
 const buttonUpdateDiv = document.querySelector('.update');
 
 setMinAndMaxDate();
-
 buttonFind.addEventListener('click', getCurrentCity);
 updateButton.addEventListener("click", goFetch);
-
-//console.log(chooseDate.outerHTML);
 
 function setMinAndMaxDate() {
     let futureDate = new Date().setTime(new Date().getTime() + (24 * 60 * 60 * 1000) * 5);
@@ -39,7 +36,11 @@ function goFetch() {
         .then(getJson)
         .then(getGeneralWeather)
         .catch(function (error) {
-            alert('Город не найден', error);
+            if (city !== '' && chooseDate.value !== ''){
+                alert('Город не найден!', error);
+            }else {
+                alert("Заполните все поля!");
+            }
         });
 }
 
@@ -51,7 +52,7 @@ async function getStatus(response) {
     }
 }
 
-function getJson(response) {
+async function getJson(response) {
     return response.json()
 }
 
@@ -69,18 +70,22 @@ function isDay(data) {
 }
 
 async function getGeneralWeather(data) {
-    //console.log(data);
-    buttonUpdateDiv.append(updateButton);
+    console.log(data);
+    await buttonUpdateDiv.append(updateButton);
     const index = await getIndexesOfDataListOnChooseDate(data)[0];
     const indexLast = index + getIndexesOfDataListOnChooseDate(data).length - 1;
     const avgIndex = Math.round((index + indexLast) / 2);
+    let nameCity = data.city.name;
+    const date = chooseDate.value;
 
     renderDayOrNight(data);
     await renderForecast(data);
     await fetchIcon(data.list[avgIndex].weather[0].icon, iconWeather);
-    document.querySelector('.general__city').innerHTML = data.city.name + " " + chooseDate.value;
+    document.querySelector('.general__city').innerHTML = nameCity + " " + date;
     document.querySelector('.general__description').innerHTML = `Преимущественно ${data.list[avgIndex].weather[0]["description"]}`;
     document.querySelector('.general__weather__icon').append(iconWeather);
+
+    document.cookie = nameCity + '=' + date + ';';
 }
 
 function fetchIcon(dataListIcon, img) {
@@ -93,7 +98,6 @@ function fetchIcon(dataListIcon, img) {
         } else {
             document.cookie = 'samesite=lax';
             img.setAttribute("src", `${xhr.responseURL}`);
-            //console.log(img.outerHTML);
         }
     }
     xhr.send();
@@ -103,7 +107,7 @@ function getValueWithUnit(value, unit) {
     return `${value}${unit}`;
 }
 
-function renderForecast(data) {
+async function renderForecast(data) {
     let forecastDataContainer = document.querySelector('.forecast');
     forecastDataContainer.innerHTML = '';
     const indexOfDataOnChooseDate = getIndexesOfDataListOnChooseDate(data);
@@ -159,9 +163,9 @@ function getIndexesOfDataListOnChooseDate(data) {
     return index;
 }
 
-function getDataOfIndex(data) {
-    let item = data.list;
-    let dataList = [];
-    dataList = item.filter(element => element.dt_txt.substr(0, 10) === chooseDate.value);
-    return dataList;
-}
+// function getDataOfIndex(data) {
+//     let item = data.list;
+//     let dataList = [];
+//     dataList = item.filter(element => element.dt_txt.substr(0, 10) === chooseDate.value);
+//     return dataList;
+// }

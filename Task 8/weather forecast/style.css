@@ -37,8 +37,7 @@ html[data-theme="night"] .weather {
 
 .general {
     text-align: center;
-    color: #ffffff;
-    padding: 20px;
+    padding: 30px;
 }
 
 .current__header {
