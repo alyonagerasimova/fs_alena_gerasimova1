@@ -9,22 +9,20 @@
 <div class="weather">
     <div class="header">
         <label>Город:
-            <input name="city">
+            <input name="city" required>
             <datalist id="cities">
-
             </datalist>
         </label>
-
         <label>Дата:
             <input type="date" class="date" required>
         </label>
-        <button>Найти</button>
+        <button class="search">Найти</button>
     </div>
-    <div class="current">
-        <div class="current__city"></div>
-        <div class="current__weather__icon"></div>
-        <div class="current__description"></div>
-        <div class="current__temperature"></div>
+    <div class="general">
+        <div class="general__city"><p>Для получения прогноза погоды введите название города и дату, затем нажмите на кнопку "Найти"</p></div>
+        <div class="general__weather__icon"></div>
+        <div class="general__description"></div>
+        <div class="general__temperature"></div>
     </div>
 
     <div class="forecast"></div>
@@ -41,7 +39,6 @@
         </div>
     </div>
     <div class="update">
-        <button>Обновить</button>
     </div>
 </div>
 <script src="script.js"></script>

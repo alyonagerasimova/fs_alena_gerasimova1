@@ -6,15 +6,16 @@ const degree = '˚';
 const percent = '%';
 const velocity = ' км/ч';
 const chooseDate = document.querySelector('.date');
-const update = document.querySelector('.update button');
+const updateButton = document.createElement('button');
+updateButton.innerHTML = "Обновить";
 let city;
 const iconWeather = document.createElement('img');
-
+const buttonUpdateDiv = document.querySelector('.update');
 
 setMinAndMaxDate();
 
 buttonFind.addEventListener('click', getCurrentCity);
-update.addEventListener("click", goFetch);
+updateButton.addEventListener("click", goFetch);
 
 //console.log(chooseDate.outerHTML);
 
@@ -36,9 +37,9 @@ function goFetch() {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&lang=ru`)
         .then(getStatus)
         .then(getJson)
-        .then(getCurrentWeather)
+        .then(getGeneralWeather)
         .catch(function (error) {
-            console.log('Город не найден', error);
+            alert('Город не найден', error);
         });
 }
 
@@ -67,18 +68,19 @@ function isDay(data) {
     return (now > sunrise && now < sunset);
 }
 
-async function getCurrentWeather(data) {
+async function getGeneralWeather(data) {
     //console.log(data);
+    buttonUpdateDiv.append(updateButton);
     const index = await getIndexesOfDataListOnChooseDate(data)[0];
-    const indexLast = getIndexesOfDataListOnChooseDate(data).length - 1;
+    const indexLast = index + getIndexesOfDataListOnChooseDate(data).length - 1;
     const avgIndex = Math.round((index + indexLast) / 2);
 
     renderDayOrNight(data);
     await renderForecast(data);
     await fetchIcon(data.list[avgIndex].weather[0].icon, iconWeather);
-    document.querySelector('.current__city').innerHTML = data.city.name + " " + chooseDate.value;
-    document.querySelector('.current__description').innerHTML = `Преимущественно ${data.list[avgIndex].weather[0]["description"]}`;
-    document.querySelector('.current__weather__icon').append(iconWeather);
+    document.querySelector('.general__city').innerHTML = data.city.name + " " + chooseDate.value;
+    document.querySelector('.general__description').innerHTML = `Преимущественно ${data.list[avgIndex].weather[0]["description"]}`;
+    document.querySelector('.general__weather__icon').append(iconWeather);
 }
 
 function fetchIcon(dataListIcon, img) {
@@ -138,8 +140,8 @@ function renderForecast(data) {
         sumWindSpeed += item.wind.speed;
         sumTemperature += item.main.temp;
     }
-    document.querySelector('.current__temperature').innerHTML = getValueWithUnit(Math.round(sumTemperature / lengthForecast), degree);
-    document.querySelector('.humidity__name').innerHTML =` Влажность (средняя):`;
+    document.querySelector('.general__temperature').innerHTML = getValueWithUnit(Math.round(sumTemperature / lengthForecast), degree);
+    document.querySelector('.humidity__name').innerHTML = ` Влажность (средняя):`;
     document.querySelector('.humidity__unit').innerHTML = getValueWithUnit((sumHumidity / lengthForecast).toFixed(1), percent);
     document.querySelector('.wind__name').innerHTML = `Скорость ветра (средняя):`;
     document.querySelector('.wind__unit').innerHTML = getValueWithUnit((sumWindSpeed / lengthForecast).toFixed(1), velocity);

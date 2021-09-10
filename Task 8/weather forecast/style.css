@@ -5,39 +5,37 @@
 
 body {
     font-family: "Tahoma", sans-serif;
+    color: #ffffff;
 }
 
 .header {
     display: flex;
     justify-content: center;
     background-clip: border-box;
+    align-items: center;
 }
 
 .weather {
-    color: #ffffff;
+
+    background: url("img/img.png") no-repeat center;
 }
 
 .forecast {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-bottom: 2em;
     text-align: center;
 }
 
-html[data-theme="day"] .weather,
-.weather {
-    background: linear-gradient(360deg, #3594bf 0%, rgba(255, 255, 255, 0) 100%), #53a6cb;
+html[data-theme="day"] .weather{
+    background:linear-gradient(360deg, #3594bf 0%, rgba(255, 255, 255, 0) 100%), #53a6cb no-repeat;
 }
 
 html[data-theme="night"] .weather {
-    background: linear-gradient(360deg, #55707e 0%, rgba(255, 255, 255, 0) 100%), #042232;
+    background: linear-gradient(360deg, #55707e 0%, rgba(255, 255, 255, 0) 100%), #042232 no-repeat;
 }
 
-.current__weather__icon {
-
-}
-
-.current {
+.general {
     text-align: center;
     color: #ffffff;
     padding: 20px;
@@ -47,11 +45,22 @@ html[data-theme="night"] .weather {
     padding-bottom: 20px;
 }
 
-img {
-
+button{
+    color: #444444;
+    background: antiquewhite;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border: white;
 }
 
-.current img {
+.search {
+    width: 80px;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.general img {
     width: 10%;
 }
 
@@ -67,13 +76,27 @@ img {
 
 .update {
     text-align: center;
-
     margin: 25px;
     display: block;
 }
 
 .update button {
-    padding: 7px;
-    background: antiquewhite;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: 18px;
+}
+
+button:hover {
+    background: rgb(199, 199, 199);
+}
+
+input{
+    border-radius: 7px;
+    height: 25px;
+    padding-left: 7px;
+    border: 1px solid #fff;
+    margin-right: 10px;
+}
+
+.forecast__item{
+    padding: 0 20px;
 }
