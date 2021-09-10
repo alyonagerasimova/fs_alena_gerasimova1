@@ -1,22 +1,31 @@
-*{
+* {
     padding: 2px;
     margin: 0;
 }
 
-body{
+body {
     font-family: "Tahoma", sans-serif;
 }
 
-.forecast{
-    color: #ffffff;
+.header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    background-clip: border-box;
+}
+
+.weather {
+    color: #ffffff;
+}
+
+.forecast {
+    display: flex;
+    justify-content: space-evenly;
     margin-bottom: 2em;
     text-align: center;
 }
 
 html[data-theme="day"] .weather,
-.weather{
+.weather {
     background: linear-gradient(360deg, #3594bf 0%, rgba(255, 255, 255, 0) 100%), #53a6cb;
 }
 
@@ -24,44 +33,46 @@ html[data-theme="night"] .weather {
     background: linear-gradient(360deg, #55707e 0%, rgba(255, 255, 255, 0) 100%), #042232;
 }
 
-.current__weather__icon{
+.current__weather__icon {
 
 }
 
-.current{
+.current {
     text-align: center;
     color: #ffffff;
     padding: 20px;
 }
 
-.current__header{
+.current__header {
     padding-bottom: 20px;
 }
 
-img{
-    width: 50%;
+img {
+
 }
 
-.current img{
-    width: 8%;
+.current img {
+    width: 10%;
 }
 
-.other{
+.other {
     display: flex;
+    justify-content: center;
+    padding: 30px;
 }
 
-.humidity{
+.humidity {
     padding: 0 50px;
 }
 
-.update{
+.update {
     text-align: center;
 
     margin: 25px;
     display: block;
 }
 
-.update button{
+.update button {
     padding: 7px;
     background: antiquewhite;
     border-radius: 6px;
