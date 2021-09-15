@@ -1,6 +1,4 @@
-'use strict';
-
-//Использовать классы, интерфейсы, объединения типов.
+// Использовать классы, интерфейсы, объединения типов.
 // Все функции и переменные должны быть полностью типизированы.
 // С использованием generics написать фабрику для создания объектов.
 // Для фабрики написать декоратор, который при создании объекта
@@ -9,98 +7,24 @@
 // Написать тесты для проверки работоспособности.
 // (*) Настроить eslint и его плагины для работы с TypeScript.
 
-class ElectronicsStore {
-
-    protected _name: string;
-    protected _store: any[];
-
-    constructor(name: string, store: any[]) {
-        this._name = name;
-        this._store = store;
-    }
-
-    public get name(): string {
-        return this._name;
-    }
-
-    public set name(value: string) {
-        if (value === ' ') {
-            alert("Пустое имя");
-        }
-        this._name = value;
-    }
-
-    get store(): any[] {
-        return this._store;
-    }
-
-    set store(products: any[]) {
-        if (products.length === 0) {
-            alert("Склад пуст");
-        }
-        this._store = products;
-    }
-}
-
-class Product {
-
-    protected _nameProduct: string;
-    protected _assignment: string;
-
-    constructor(nameProduct: string, assignment: string) {
-        this._nameProduct = nameProduct;
-        this._assignment = assignment;
-    }
+// Classes
+abstract class Product {
+    protected constructor(
+        protected _nameProduct: string,
+        protected _nameModel: string,
+        protected _modelCode: number,
+        protected _specifications: Specifications,
+        protected _cost: number
+    ) {}
 
     get nameProduct(): string {
         return this._nameProduct;
-    }
-
-    get assignment(): string {
-        return this._assignment;
-    }
-
-    set assignment(string: string) {
-        if (string === ' ') {
-            alert("Нет определенного назначения");
-            return;
-        }
-        this._assignment = string;
     }
 
     set nameProduct(string: string) {
         this._nameProduct = string;
     }
-}
 
-class ProductsModel extends Product {
-
-    constructor(nameProduct, assignment, protected _nameModel: string, protected _modelCode: number,
-                protected _specifications: Specifications, protected _cost: number) {
-        super(nameProduct, assignment);
-        // this._specifications = specifications;
-        // this._nameProduct = nameProduct;
-        // this._assignment = assignment;
-        // this._nameModel = nameModel;
-        // this._modelCode = modelCode;
-        // this._cost = cost;
-    }
-
-    get nameProduct(): string {
-        return this._nameProduct;
-    }
-
-    set nameProduct(value: string) {
-        this._nameProduct = value;
-    }
-
-    get assignment(): string {
-        return this._assignment;
-    }
-
-    set assignment(value: string) {
-        this._assignment = value;
-    }
 
     get nameModel(): string {
         return this._nameModel;
@@ -126,19 +50,48 @@ class ProductsModel extends Product {
         this._cost = value;
     }
 
-    get specifications(): any {
+    get specifications(): Specifications {
         return this._specifications;
     }
 
-    set specifications(value: any) {
+    set specifications(value: Specifications) {
         this._specifications = value;
     }
 }
 
-class Specifications {
+class Store<T extends Product = Product> {
+    constructor(protected _name: string, protected _store: T[]) {
+    }
 
-    constructor(protected _year: number, protected _producer: string, protected _countryProducer: string,
-                protected _guarantee?: string, protected _size?: string, protected _material?: string) {
+    public get name(): string {
+        return this._name;
+    }
+
+    public set name(value: string) {
+        if (!value) {
+            alert("Пустое имя");
+        }
+        this._name = value;
+    }
+
+    get store(): T[] {
+        return this._store;
+    }
+
+    set store(products: T[]) {
+        if (!products.length) {
+            alert("Склад пуст");
+        }
+        this._store = products;
+    }
+}
+
+class Specifications {
+    constructor(protected _year: number,
+                protected _producer: string,
+                protected _countryProducer: string,
+                protected _guarantee?: string,
+                protected _size?: string, protected _material?: string) {
     }
 
     get guarantee(): string {
@@ -190,9 +143,30 @@ class Specifications {
     }
 }
 
-class Customer {
+class ConcreteProduct extends Product {
+    private _codeOfCoreWeapons = 442535;
 
-    constructor(protected _name: string, protected _phone: number, protected _email?: string) {
+    constructor(
+        nameProduct: string,
+        nameModel: string,
+        modelCode: number,
+        specifications: Specifications,
+        cost: number
+    ) {
+        super(nameProduct, nameModel, modelCode, specifications, cost);
+    }
+
+    get codeOfCoreWeapons(): number {
+        return this._codeOfCoreWeapons;
+    }
+}
+
+class Customer {
+    constructor(
+        protected _name: string,
+        protected _phone: number,
+        protected _email?: string
+    ) {
     }
 
     get phone(): number {
@@ -221,15 +195,18 @@ class Customer {
 }
 
 class Order {
-
-    constructor(protected _customer: Customer, protected _products: string, protected _orderNumber: number) {
+    constructor(
+        protected _customer: Customer,
+        protected _products: Product,
+        protected _orderNumber: number
+    ) {
     }
 
     get customer() {
         return this._customer;
     }
 
-    set customer(value) {
+    set customer(value: Customer) {
         this._customer = value;
     }
 
@@ -237,7 +214,7 @@ class Order {
         return this._products;
     }
 
-    set products(value) {
+    set products(value: Product) {
         this._products = value;
     }
 
@@ -250,37 +227,51 @@ class Order {
     }
 }
 
+// Decorator
+function fabricLogger(classType: string) {
+    return (target: ProductCreator, propertyKey: string, descriptor: PropertyDescriptor) => {
+        console.log("fabricLogger decorator init");
+        const originalFn = descriptor.value;
 
-const products: any[] = [];
+        descriptor.value = (...args) => {
+            const instance = originalFn(...args);
+            console.log(`Object ${classType} created!`);
+            return instance;
+        }
+        return descriptor;
+    }
+}
 
-products[0] = new Product('Фен', 'Сушка волос');
-products[1] = new Product('Утюг', 'Глажка одежды');
+//Fabrics
+interface ProductCreator<T extends Product = Product> {
+    createInstance(...args): T;
+}
 
-let electronicsStore: ElectronicsStore = new ElectronicsStore('dns', products);
-const specific: Specifications = new Specifications(2020, 'Philips', 'China', '1 year', `78*274*174mm`);
-let model = new ProductsModel(products[0].nameProduct, products[0].assignment,'GHKR-1924',3453, specific, 1499);
-let customer1 = new Customer('Ivan', 89279032840);
-let order1 = new Order(customer1, products[1], 1234);
+class ConcreteProductCreator implements ProductCreator<ConcreteProduct>{
+    @fabricLogger("ConcreteProduct")
+    public createInstance(nameProduct: string, nameModel: string, modelCode: number, specifications: Specifications, cost: number): ConcreteProduct {
+        return new ConcreteProduct(nameProduct, nameModel, modelCode, specifications, cost);
+    }
+}
 
-console.log(`Магазин электроники:`);
-console.log(electronicsStore);
-console.log(`Товары магазина:`);
-console.log(products);
+function testFabric(): void {
+    const creator: ProductCreator<ConcreteProduct> = new ConcreteProductCreator();
+    const specific: Specifications = new Specifications(2020, "Philips", "China", "1 year", "78*274*174mm");
 
-model.specifications = specific;
+    const products: ConcreteProduct[] = [];
+    products[0] = creator.createInstance("Фен", "Сушка волос", 32243, specific, 10);
+    products[1] = creator.createInstance("Утюг", "Глажка одежды", 7897, specific, 30);
 
-console.log(`Модель первого товара:`);
-console.log(model);
-console.log(`Его характеристики:`);
-console.log(model.specifications);
+    console.log("Concrete Products", products);
 
-electronicsStore.name = 'Mvideo';
+    const concreteStore = new Store<ConcreteProduct>("dns", products);
 
-console.log(`Новое название магазина: ${electronicsStore.name}`);
-console.log(`Первый покупатель:`);
-console.log(customer1);
-console.log(`Его заказ:`);
-console.log(order1);
+    console.log("Store", concreteStore);
 
-order1 = undefined;
-console.log(`Заказ удален: ${order1}`);
+    const customer = new Customer("Ivan", 89279032840);
+    const order: Order = new Order(customer, products[1], 1234);
+
+    console.log("Concrete order", order);
+}
+
+testFabric();
