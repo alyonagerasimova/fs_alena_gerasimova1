@@ -1,0 +1,10 @@
+<h1>Animals</h1>
+
+<ul>
+  <li *ngFor="let animal of animals; let i=index" [style.visibility]="hide[i] ? 'hidden' : 'visible'" [className]="myClass" (click)="onClick(i)"
+      [textContent]="animal.kindOfAnimal + ': ' + animal.animalName + animal.details">
+  </li>
+</ul>
+
+<button (click)="hideKittens()" >Скрыть котиков</button>
+<button (click)="showKittens()" >Показать котиков</button>
