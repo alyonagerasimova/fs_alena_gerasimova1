@@ -7,7 +7,6 @@ import {FormsModule} from "@angular/forms";
 import {AnimalsService} from "./animals.service";
 
 
-
 @NgModule({
   declarations: [
     AppComponent

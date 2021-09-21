@@ -1,19 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 export class Animal {
 
-  public _kindOfAnimal: string;
-  public _animalName: string;
-  public _age: number;
-  public _weight: number;
-  public _details: string = '';
-
-  constructor(kindOfAnimal: string, animalName: string, age: number, weight: number, details?: string) {
-    this._kindOfAnimal = kindOfAnimal;
-    this._animalName = animalName;
-    this._age = age;
-    this._weight = weight;
-
+  constructor(
+    protected _kindOfAnimal: string,
+    protected _animalName: string,
+    protected _age: string,
+    protected _gender: string,
+    protected _breed: string,
+    protected _hobby: string,
+    protected _otherFeatures: string,
+    protected _details?: string | undefined
+  ) {
   }
 
   get kindOfAnimal(): string {
@@ -32,39 +30,74 @@ export class Animal {
     this._animalName = value;
   }
 
-  get age(): number {
+  get age(): string {
     return this._age;
   }
 
-  set age(value: number) {
+  set age(value: string) {
     this._age = value;
   }
 
-  get weight(): number {
-    return this._weight;
+  get gender(): string {
+    return this._gender;
   }
 
-  set weight(value: number) {
-    this._weight = value;
+  set gender(value: string) {
+    this._gender = value;
   }
 
-  get details(): string{
+  get breed(): string {
+    return this._breed;
+  }
+
+  set breed(value: string) {
+    this._breed = value;
+  }
+
+  get hobby(): string {
+    return this._hobby;
+  }
+
+  set hobby(value: string) {
+    this._hobby = value;
+  }
+
+  get otherFeatures(): string {
+    return this._otherFeatures;
+  }
+
+  set otherFeatures(value: string) {
+    this._otherFeatures = value;
+  }
+
+  get details(): string | undefined{
     return this._details;
   }
 
-  set details(value: string) {
+  set details(value: string | undefined) {
     this._details = value;
   }
 }
 
 @Injectable()
-export class AnimalsService{
-   private data: Animal[] = [
-    new Animal("Котенок", "Лео", 12, 2),
-    new Animal("Котенок", "Ириска", 9, 2),
-    new Animal("Щенок", "Ральф", 11, 2),
-    new Animal("Щенок", "Микки", 6, 2)
+export class AnimalsService {
+  private data: Animal[] = [
+    new Animal("Кот", "Лео", "1 год", "Мальчик", "Короткошерстный",
+      "Нравится бегать","Приучен к лотку"),
+    new Animal("Котенок", "Ириска", "9 месяцев", "Девочка", "Длинношерстная",
+      "Спокойная","Приучена к лотку"),
+    new Animal("Щенок", "Ральф", "11 месяцев", "Мальчик", "Короткошерстный",
+      "Обожает лакомства","Приучен к поводку, обучен командам"),
+    new Animal("Кошка", "Дашута", "6 лет", "Девочка", "Короткошерстный",
+      "Спокойная","Приучена к лотку, к когтеточке"),
+    new Animal("Щенок", "Микки", "6 месяцев", "Мальчик", "Короткошерстный",
+      "Нравится бегать","Ладит с детьми"),
+    new Animal("Пес", "Батоня", "3 года", "Мальчик", "Короткошерстный",
+      "Спокойный","Ладит с детьми, приучен к поводку"),
+    new Animal("Котенок", "Пуншик", "3 месяцев", "Мальчик", "Короткошерстный",
+      "Нравится бегать","Ладит с детьми")
   ];
+
   public getData(): Animal[] {
     return this.data;
   }

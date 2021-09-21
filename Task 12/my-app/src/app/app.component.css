@@ -1,12 +1,50 @@
-h1{
-  color: red;
+h1 {
+  color: #2ab473;
+  margin: 20px 0 0 0;
+  padding: 10px 0;
+  font-family: 'Raleway', sans-serif;
 }
 
-.information{
+.main {
+  text-align: center;
+  background-color: rgb(236, 245, 255);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.main__decor {
   display: flex;
   justify-content: center;
+  align-items: center;
+  border-top: 3px solid white;
+  font-size: 18px;
+  height: 80px;
+  font-family: "Courier New", sans-serif;
+  font-weight: bold;
+  text-align: center;
 }
 
-.hide{
-  visibility:visible;
+.main__decor:hover{
+  cursor: pointer;
+  background: #5787ff;
+  color: #fff;
+}
+
+.main__button {
+  border: 2px solid #edffec;
+  border-radius: 6px;
+  background-color: #18b72c;
+  color: white;
+  margin: 10px 10px;
+  padding: 13px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.main__button:hover {
+  background-color: #969696;
 }

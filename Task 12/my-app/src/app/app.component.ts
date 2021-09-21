@@ -18,9 +18,12 @@ import {AnimalsService} from "./animals.service";
 export class AppComponent implements OnInit{
   title = 'my-app';
 
-  public myClass = "information";
+  public myClass = "main";
+  public classForButton = "main__button";
+  public decorText = "main__decor";
   public hide: any[] = [];
   public bool = false;
+  public hideButton = false;
   // @ts-ignore
   public animals;
 
@@ -34,16 +37,20 @@ export class AppComponent implements OnInit{
 
 
   onClick(index: number) {
-    (this.animals)[index].details = ", вес: " + (this.animals)[index].weight + 'кг' + ', возраст:' + (this.animals)[index].age + " месяцев";
+    (this.animals)[index].details = (this.animals)[index].gender + ', ' + (this.animals)[index].age +
+      ', ' + (this.animals)[index].breed + ', ' + (this.animals)[index].hobby +
+      ', ' + (this.animals)[index].otherFeatures;
     this.bool = true;
     return this.bool;
   }
 
 
   hideKittens() {
+    this.hideButton = true;
     for (let i = 0; i < this.animals.length; i++) {
       this.hide[i] = false;
-      if (this.animals[i].kindOfAnimal === "Котенок") {
+      if (this.animals[i].kindOfAnimal === "Котенок" || this.animals[i].kindOfAnimal === "Кот"
+        || this.animals[i].kindOfAnimal === "Кошка") {
         this.hide[i] = true;
       }
     }
@@ -51,8 +58,10 @@ export class AppComponent implements OnInit{
   }
 
   showKittens() {
+    this.hideButton = false;
     for (let i = 0; i < this.animals.length; i++) {
-      if (this.animals[i].kindOfAnimal === "Котенок") {
+      if (this.animals[i].kindOfAnimal === "Котенок" || this.animals[i].kindOfAnimal === "Кот"
+        || this.animals[i].kindOfAnimal === "Кошка") {
         this.hide[i] = false;
       }
     }
