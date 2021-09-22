@@ -16,11 +16,13 @@ import {AnimalsService} from "./animals.service";
 })
 
 export class AppComponent implements OnInit{
-  title = 'my-app';
+  title = 'animals-app';
 
   public myClass = "main";
   public classForButton = "main__button";
   public decorText = "main__decor";
+  public decorWithDetailsText = "main__decorWithDetails";
+  public detailsText = "main__details";
   public hide: any[] = [];
   public bool = false;
   public hideButton = false;
@@ -37,6 +39,7 @@ export class AppComponent implements OnInit{
 
 
   onClick(index: number) {
+    this.bool = false;
     (this.animals)[index].details = (this.animals)[index].gender + ', ' + (this.animals)[index].age +
       ', ' + (this.animals)[index].breed + ', ' + (this.animals)[index].hobby +
       ', ' + (this.animals)[index].otherFeatures;
