@@ -15,7 +15,7 @@ import {AnimalsService} from "./animals.service";
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'animals-app';
 
   public myClass = "main";
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
   public hideButton = false;
   // @ts-ignore
   public animals;
+  public kindOfAnimalIsCat: boolean | undefined;
 
 
   constructor(private _animalsService: AnimalsService) {
@@ -50,25 +51,27 @@ export class AppComponent implements OnInit{
 
   hideKittens() {
     this.hideButton = true;
-    for (let i = 0; i < this.animals.length; i++) {
+
+    this.animals.forEach((animal: any, i: number) => {
       this.hide[i] = false;
-      if (this.animals[i].kindOfAnimal === "Котенок" || this.animals[i].kindOfAnimal === "Кот"
-        || this.animals[i].kindOfAnimal === "Кошка") {
+      this.kindOfAnimalIsCat = animal.kindOfAnimal === "Котенок" || animal.kindOfAnimal === "Кот"
+        || animal.kindOfAnimal === "Кошка";
+
+      if (this.kindOfAnimalIsCat) {
         this.hide[i] = true;
       }
-    }
+    });
     return this.hide;
   }
 
   showKittens() {
     this.hideButton = false;
-    for (let i = 0; i < this.animals.length; i++) {
-      if (this.animals[i].kindOfAnimal === "Котенок" || this.animals[i].kindOfAnimal === "Кот"
-        || this.animals[i].kindOfAnimal === "Кошка") {
+
+    this.animals.forEach((animal: any, i: number) => {
+      if (this.kindOfAnimalIsCat) {
         this.hide[i] = false;
       }
-    }
+    });
     return this.hide;
   }
-
 }
