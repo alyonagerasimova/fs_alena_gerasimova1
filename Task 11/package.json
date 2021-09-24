@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsc --watch",
-    "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
+    "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx",
     "eslint:dump": "eslint --print-config ./.eslintrc.json"
   },
   "author": "",
