@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="weather">
+    <div class="header">
+        <label>Город:
+            <input name="city" required>
+            <datalist id="cities">
+            </datalist>
+        </label>
+        <label>Дата:
+            <input type="date" class="date" required>
+        </label>
+        <button class="search">Найти</button>
+    </div>
+    <div class="general">
+        <div class="general__city"><p>Для получения прогноза погоды введите название города или код штата и страны
+            и дату, затем нажмите на кнопку "Найти"</p></div>
+        <div class="general__weather__icon"></div>
+        <div class="general__description"></div>
+        <div class="general__temperature"></div>
+    </div>
+
+    <div class="forecast"></div>
+
+    <div class="other">
+        <div class="humidity">
+            <div class="humidity__name"></div>
+            <div class="humidity__unit"></div>
+        </div>
+
+        <div class="wind">
+            <div class="wind__name"></div>
+            <div class="wind__unit"></div>
+        </div>
+    </div>
+    <div class="update">
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
