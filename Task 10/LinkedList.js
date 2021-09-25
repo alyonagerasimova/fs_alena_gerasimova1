@@ -17,6 +17,7 @@ class LinkedList {
     getElementByIndex(index) {
         let currentElement = this.head;
         let count = 0;
+        if (index < 0 || index >= this.length) return null;
         while (count < index) {
             count++;
             currentElement = currentElement.nextElement;
@@ -46,7 +47,7 @@ class LinkedList {
         let previousElement;
         let currentIndex = 0;
 
-        if (index > this.length) return false;
+        if (index > this.length) return null;
         if (index === 0) {
             newElement.nextElement = currentElement;
             newElement.previousElement = null;
@@ -61,17 +62,6 @@ class LinkedList {
         previousElement.nextElement = newElement;
         newElement.previousElement = previousElement;
         this.length++;
-    }
-
-    editElementByIndex(replaceElement, index) {
-        let currentElement = this.head;
-        let count = 0;
-        while (count < index) {
-            count++;
-            currentElement = currentElement.nextElement;
-        }
-        currentElement.element = replaceElement;
-        return currentElement.element;
     }
 
     removeElementByIndex(index) {
@@ -95,19 +85,33 @@ class LinkedList {
         currentElement.previousElement = null;
         currentElement.nextElement = null;
     }
+
+    editElementByIndex(replaceElement, index) {
+        this.removeElementByIndex(index);
+        this.pushElementByIndex(replaceElement,index);
+
+        // let currentElement = this.head;
+        // let count = 0;
+        // while (count < index) {
+        //     count++;
+        //     currentElement = currentElement.nextElement;
+        // }
+        // currentElement.element = replaceElement;
+        // return currentElement.element;
+    }
 }
 
 let list = new LinkedList();
 list.pushElementToEnd(1);
 list.pushElementToEnd(2);
-list.pushElementByIndex(3,2);
+list.pushElementByIndex(3, 2);
 console.log("Первый элемент: " + list.getElementByIndex(0));
 console.log("Второй элемент: " + list.getElementByIndex(1));
 console.log("Третий элемент: " + list.getElementByIndex(2));
 list.editElementByIndex(1.5, 1);
 list.removeElementByIndex(2);
-// console.log("Первый элемент: " + list.getElementByIndex(0));
-// console.log("Второй элемент: " + list.getElementByIndex(1));
-// console.log("Третий элемент: " + list.getElementByIndex(2));
+//console.log("Первый элемент: " + list.getElementByIndex(0));
+console.log("Второй элемент: " + list.getElementByIndex(1));
+//console.log("Третий элемент: " + list.getElementByIndex(2));
 console.log("Список:");
 console.log(list);
