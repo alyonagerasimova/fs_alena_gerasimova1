@@ -1,0 +1,84 @@
+:root {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 14px;
+
+    --var-default-td-padding: 2px 20px;
+}
+
+body {
+    background: seashell;
+}
+
+.table-expenses {
+    display: flex;
+    margin: 10px 40px;
+    justify-content: space-between;
+}
+
+.table-expenses__inner {
+    border-collapse: collapse;
+    text-align: left;
+    display: table;
+    box-sizing: border-box;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.table-expenses__header td {
+    min-width: 205px;
+    padding: var(--var-default-td-padding);
+    font-size: 15px;
+    background: rgb(255, 116, 84);
+    border-top: 4px solid white;
+    border-bottom: 1px solid #ffffff;
+    color: #fff;
+}
+
+.table-expenses__plus-button {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.table-expenses__row {
+}
+
+.table-expenses__row td {
+    min-width: 205px;
+    padding: var(--var-default-td-padding);
+    background: #ffd1c9;
+    border-top: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.table-expenses__row:hover td {
+    background: #ffb2a7;
+}
+
+.table-expenses__row td input {
+    size: inherit;
+    background: rgb(255, 224, 217);;
+    border: 1px solid rgb(252, 242, 242);
+}
+
+.table-expenses__row-manage {
+    display: flex;
+    padding: 4px 0;
+}
+
+.table-expenses__row-manage button {
+    margin-left: 10px;
+}
+
+.table-expenses__button {
+    display: inline-flex;
+    justify-content: center;
+    padding: 8px;
+    height: 32px;
+    width: 70px;
+    align-items: center;
+}
+
