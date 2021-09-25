@@ -2,11 +2,10 @@
   "name": "package",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack/index.js",
+  "main": "../webpack/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "concat-task": " gulp concat-task"
   },
   "author": "",
   "license": "ISC",
