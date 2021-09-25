@@ -1,0 +1,16 @@
+<div [ngClass]="myClass">
+  <h1>Список животных</h1>
+
+  <ul *ngFor="let animal of animals; let i=index">
+    <li [style.display]="hide[i] ? 'none' : 'flex'"
+        (click)="onClick(i)" [className]="animal.details ? decorWithDetailsText : decorText">
+      {{animal.kindOfAnimal + ': ' + animal.animalName}} <br>
+    </li>
+    <div [style.display]="hide[i] ? 'none' : 'flex'" [className]="detailsText">{{animal.details}}</div>
+  </ul>
+
+  <div>
+    <button *ngIf="!hideButton" [className]="classForButton" (click)="hideKittens()">Скрыть котиков</button>
+    <button *ngIf="hideButton" [className]="classForButton" (click)="showKittens()">Показать котиков</button>
+  </div>
+</div>

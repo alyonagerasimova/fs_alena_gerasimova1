@@ -11,3 +11,4 @@
 | 08.09.21 | Task 9 | Done Hometask 9 | https://gitlab.com/nc-samara-frontend-school/2021/development/fs_alena_gerasimova/-/merge_requests/8
 | 16.09.21 | Task 10 | Done Hometask 10 | https://gitlab.com/nc-samara-frontend-school/2021/development/fs_alena_gerasimova/-/merge_requests/11
 | 16.09.21 | Task 11 | Done Hometask 11 | https://gitlab.com/nc-samara-frontend-school/2021/development/fs_alena_gerasimova/-/merge_requests/10
+| 22.09.21 | Task 12 | Done Hometask 12 | https://gitlab.com/nc-samara-frontend-school/2021/development/fs_alena_gerasimova/-/merge_requests/12
