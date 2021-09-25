@@ -1,0 +1,28 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-cli": "^2.3.0",
+    "gulp-dest": "^0.2.3",
+    "rxjs": "6.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "html-webpack-plugin": "^4.5.0",
+    "path": "^0.12.7",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.1.0"
+  }
+}
