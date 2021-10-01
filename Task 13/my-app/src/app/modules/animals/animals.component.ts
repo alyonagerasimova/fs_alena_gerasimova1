@@ -5,7 +5,7 @@ import {Animal} from "../types";
 @Component({
   selector: 'app-animals-list',
   templateUrl: './animals.component.html',
-  styleUrls: ['./animals.component.css'],
+  styleUrls: ['./animals.component.less'],
 })
 export class AnimalsComponent implements OnInit {
 

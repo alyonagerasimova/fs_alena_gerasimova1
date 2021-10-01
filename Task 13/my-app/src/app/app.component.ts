@@ -4,7 +4,7 @@ import {AnimalsService} from "./modules/animals/animals.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
   public myClass = "main";

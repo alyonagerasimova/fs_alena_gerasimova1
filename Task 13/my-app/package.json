@@ -19,6 +19,8 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@babel/core": "^7.15.5",
+    "angular.less": "0.0.3",
+    "less": "^4.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
