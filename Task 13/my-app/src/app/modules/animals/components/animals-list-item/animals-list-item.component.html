@@ -1,0 +1,13 @@
+<ng-container *ngIf="!hidden">
+  <div class="main__decor" (click)="switchDetailsView()">
+    {{animal.kindOfAnimal + ': ' + animal.animalName}}
+    <div class="main__details"
+         [class._hidden]="!_isOpened">
+      <div>{{animal.age + " " + animal.detailsAge}}</div>
+      <div>{{animal.breed}}</div>
+      <div>{{animal.gender}}</div>
+      <div>{{animal.hobby}}</div>
+      <div>{{animal.otherFeatures}}</div>
+    </div>
+  </div>
+</ng-container>
