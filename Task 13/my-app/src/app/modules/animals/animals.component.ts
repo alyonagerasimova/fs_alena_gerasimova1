@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AnimalsService} from "./animals.service";
-import {Animal} from "../types";
+import {Animal, AnimalType} from "../types";
 
 @Component({
   selector: 'app-animals-list',
@@ -20,7 +20,7 @@ export class AnimalsComponent implements OnInit {
 
   hideKittens() {
     this._isKittensShow = false;
-    this._animals = this.animalsService.filterAnimalsByKitten();
+    this._animals = this.animalsService.filterAnimalsByType(AnimalType.CAT);
   }
 
   showKittens() {

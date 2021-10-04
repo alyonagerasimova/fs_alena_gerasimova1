@@ -10,9 +10,9 @@ export class AnimalsService {
     return this.data;
   }
 
-  public filterAnimalsByKitten(): Animal[] {
+  public filterAnimalsByType(type: AnimalType): Animal[] {
     return this.data.filter(animal =>{
-      return animal.kindOfAnimal === AnimalType.DOG;
+      return animal.kindOfAnimal !== type;
     })
   }
 }
