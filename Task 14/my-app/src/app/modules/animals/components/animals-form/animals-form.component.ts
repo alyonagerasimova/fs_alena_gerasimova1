@@ -12,9 +12,6 @@ export class AnimalsFormComponent implements OnInit {
   public genders: (AnimalGender.FEMALE | AnimalGender.MALE)[] = [AnimalGender.FEMALE, AnimalGender.MALE];
 
   @Input()
-  public animals!: Animal[];
-
-  @Input()
   public openForm: boolean = true;
 
   @Output()

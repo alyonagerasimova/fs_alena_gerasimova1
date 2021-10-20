@@ -7,14 +7,13 @@ import {tap} from "rxjs/operators";
 
 @Injectable()
 export class AnimalsService {
-  private data: Animal[] = [];
-
+  public data: Animal[] = [];
 
   constructor(private animalsDataService: AnimalsDataService) {
   }
 
   public getAnimalsData(): Observable<Animal[]> {
-    return this.animalsDataService.getAnimalsData()
+    return this.animalsDataService.getAnimals()
       .pipe(tap(values => {
         this.data = values;
       }));
@@ -26,8 +25,19 @@ export class AnimalsService {
     })
   }
 
-  public getAnimalById(id: number): Observable<Animal> {
-    // @ts-ignore
-    return of(this.data.find(animal => animal.id === id));
+  public getAnimalById(id: string): Observable<Animal> {
+    return this.animalsDataService.getAnimalById(id);
+  }
+
+  public addAnimal(newAnimal: Animal): Observable<Animal> {
+    return this.animalsDataService.addAnimal(newAnimal)
+  }
+
+  public deleteAnimal(id: number): Observable<Animal> {
+    return this.animalsDataService.deleteAnimal(id);
+  }
+
+  public updateAnimal(editAnimal: Animal): Observable<any> {
+    return this.animalsDataService.updateAnimal(editAnimal);
   }
 }

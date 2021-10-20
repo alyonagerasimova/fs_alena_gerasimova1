@@ -18,11 +18,11 @@ export class AnimalsDataService {
   constructor(
     private http: HttpClient) { }
 
-  public getAnimalsData(): Observable<Animal[]> {
+  public getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>(this.animalsUrl)
   }
 
-  public getAnimalById(id: number): Observable<Animal> {
+  public getAnimalById(id: string): Observable<Animal> {
     const url = `${this.animalsUrl}/${id}`;
     return this.http.get<Animal>(url, this.httpOptions);
   }
@@ -31,12 +31,12 @@ export class AnimalsDataService {
     return this.http.post<Animal>(this.animalsUrl, animal, this.httpOptions);
   }
 
-  deleteHero(id: number): Observable<Animal> {
+  public deleteAnimal(id: number): Observable<Animal> {
     const url = `${this.animalsUrl}/${id}`;
     return this.http.delete<Animal>(url, this.httpOptions);
   }
 
-  updateHero(animal: Animal): Observable<any> {
+  public updateAnimal(animal: Animal): Observable<any> {
     return this.http.put(this.animalsUrl, animal, this.httpOptions);
   }
 }
