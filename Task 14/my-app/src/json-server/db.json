@@ -1,0 +1,75 @@
+{
+  "pet": [
+    {
+      "kindOfAnimal": "cat",
+      "animalName": "Лео",
+      "otherFeatures": "Приучен к лотку",
+      "hobby": "Нравится бегать",
+      "gender": "Мальчик",
+      "breed": "Короткошерстный",
+      "age": 1,
+      "detailsAge": "год",
+      "id":1
+    }, {
+      "kindOfAnimal": "cat",
+      "animalName": "Ириска",
+      "otherFeatures": "Приучена к лотку",
+      "hobby": "Спокойная",
+      "gender": "Девочка",
+      "breed": "Длинношерстная",
+      "age": 9,
+      "detailsAge": "месяцев",
+      "id":2
+    },  {
+      "kindOfAnimal": "dog",
+      "animalName": "Ральф",
+      "otherFeatures": "Приучен к поводку, обучен командам",
+      "hobby": "Обожает лакомства",
+      "gender": "Мальчик",
+      "breed": "Короткошерстный",
+      "age": 11,
+      "detailsAge": "месяцев",
+      "id":3
+    },  {
+      "kindOfAnimal": "cat",
+      "animalName": "Дашута",
+      "otherFeatures": "Приучена к лотку, к когтеточке",
+      "hobby": "Спокойная",
+      "gender": "Девочка",
+      "breed": "Короткошерстная",
+      "age": 6,
+      "detailsAge": "месяцев",
+      "id":4
+    },  {
+      "kindOfAnimal": "dog",
+      "animalName": "Микки",
+      "otherFeatures": "Ладит с детьми",
+      "hobby": "Нравится бегать",
+      "gender": "Мальчик",
+      "breed": "Короткошерстный",
+      "age": 6,
+      "detailsAge": "месяцев",
+      "id":5
+    },{
+      "kindOfAnimal": "dog",
+      "animalName": "Батоня",
+      "otherFeatures": "Ладит с детьми, приучен к поводку",
+      "hobby": "Спокойный",
+      "gender": "Мальчик",
+      "breed": "Короткошерстный",
+      "age": 3,
+      "detailsAge": "года",
+      "id":6
+    },{
+      "kindOfAnimal": "cat",
+      "animalName": "Пуншик",
+      "otherFeatures": "Ладит с детьми",
+      "hobby": "Нравится бегать",
+      "gender": "Мальчик",
+      "breed": "Короткошерстный",
+      "age": 3,
+      "detailsAge": "месяца",
+      "id":7
+    }
+  ]
+}

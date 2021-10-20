@@ -12,7 +12,7 @@ import {Observable} from "rxjs";
 export class AnimalsComponent implements OnInit {
 
   public _isKittensShow: boolean = true;
-  public _animals: Animal[] = [];
+  public _animals: Observable<Animal[]> = this.animalsService.getAnimalsData();
   public openForm: boolean = false;
 
   //public submitted: boolean = false;
@@ -21,18 +21,19 @@ export class AnimalsComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   public hideKittens() {
     this._isKittensShow = false;
-    this._animals = this.animalsService.filterAnimalsByType(AnimalType.CAT);
+   // this._animals = this.animalsService.filterAnimalsByType(AnimalType.CAT);
   }
 
   public showKittens() {
     this._isKittensShow = true;
-    this.animalsService.getAnimalsData().subscribe(animals => {
-      this._animals = animals;
-    })
+    // this.animalsService.getAnimalsData().subscribe(animals => {
+    //   this._animals = animals;
+    // })
   }
 
   public trackByFn(index: number, animal: Animal): number {
@@ -46,8 +47,8 @@ export class AnimalsComponent implements OnInit {
   }
 
   updateAnimalsList(newAnimal: Animal) {
-    newAnimal.id = this._animals.length + 1;
-    this._animals.push(newAnimal);
-    console.log(this._animals);
+    // newAnimal.id = this._animals.length + 1;
+    // this._animals.push(newAnimal);
+    // console.log(this._animals);
   }
 }

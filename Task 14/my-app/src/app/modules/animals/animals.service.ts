@@ -1,15 +1,23 @@
 import {Injectable} from '@angular/core';
-import {ANIMALSSTUB} from "./animals.stub";
 import {Animal, AnimalType} from "../types";
 import {Observable, of} from "rxjs";
+import {AnimalsDataService} from "../../services/animal.data.service";
+import {tap} from "rxjs/operators";
+
 
 @Injectable()
 export class AnimalsService {
-  private readonly data = ANIMALSSTUB;
+  private data: Animal[] = [];
+
+
+  constructor(private animalsDataService: AnimalsDataService) {
+  }
 
   public getAnimalsData(): Observable<Animal[]> {
-    return of(this.data);
-    //return this.http.get<Hero[]>(this.heroesUrl)
+    return this.animalsDataService.getAnimalsData()
+      .pipe(tap(values => {
+        this.data = values;
+      }));
   }
 
   public filterAnimalsByType(type: AnimalType): Animal[] {

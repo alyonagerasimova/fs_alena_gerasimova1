@@ -1,6 +1,6 @@
 <h1>Список животных</h1>
 <div>
-  <app-animals-list-item *ngFor="let animal of _animals; index as i; trackBy: trackByFn "
+  <app-animals-list-item *ngFor="let animal of _animals | async; index as i; trackBy: trackByFn "
                          [animal]="animal"
                          [hidden]="false">
   </app-animals-list-item>
@@ -17,13 +17,14 @@
     </button>
   </ng-template>
 
-  <button class="main__button">
+  <button class="main__button"
+          (click)="createNewAnimals()">
     Добавить нового животного
   </button>
   <app-animals-form
     [(openForm)]="openForm"
     *ngIf="openForm"
-    [animals]="_animals"
+    [animals]="[]"
     (newAnimalEvent)="updateAnimalsList($event)"
   ></app-animals-form>
 
