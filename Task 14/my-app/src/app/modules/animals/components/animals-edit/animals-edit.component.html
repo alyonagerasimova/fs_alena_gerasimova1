@@ -1,0 +1,66 @@
+<div>
+  <div class="container">
+    <div class="content">
+      <form [formGroup]="formModel" novalidate (ngSubmit)="onSubmit()">
+        <h1>Редактировать животного</h1>
+
+        <div class="form-group">
+          <label for="name-input">Кличка</label>
+          <input id="name-input" class="form-control" type="text" placeholder="Кличка" formControlName="animalName">
+        </div>
+
+        <div class="form-group">
+          <label for="breed-input">Порода</label>
+          <input id="breed-input" class="form-control" type="text" placeholder="Порода" formControlName="breed">
+          <div class="validation"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="type-select">Тип животного</label>
+          <select id="type-select" class="form-control" formControlName="kindOfAnimal">
+            <option value="cat">cat</option>
+            <option value="dog">dog</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gender-select">Пол животного</label>
+          <select id="gender-select" class="form-control" formControlName="gender">
+            <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age-input">Возраст</label>
+          <input id="age-input" class="form-control" type="number" formControlName="age">
+          <select class="form-control" formControlName="detailsAge">
+            <option value="months">месяцев</option>
+            <option value="month">месяц</option>
+            <option value="years">лет</option>
+            <option value="year">год</option>
+            <option value="years">года</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="hobby-input">Хобби, интересы</label>
+          <input id="hobby-input" class="form-control" type="text" placeholder="Хобби, интересы" formControlName="hobby">
+          <div class="validation"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="features-input">Особенности, другие характеристики</label>
+          <input id="features-input" class="form-control" type="text" placeholder="Особенности, другие характеристики"
+                 formControlName="otherFeatures">
+          <div class="validation"></div>
+        </div>
+
+        <button type="submit" class="btn" [disabled]="!formModel.valid">Сохранить</button>
+        <button type="button" class="close"
+                routerLink="/"
+        >Закрыть
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

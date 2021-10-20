@@ -1,0 +1,37 @@
+@primary-color: white;
+@font-size-for-bold-text: 16px;
+
+h1 {
+  color: #739F3D;
+  margin: 20px 0 0 0;
+  padding: 10px 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.main__button {
+  border: 2px solid #F69454;
+  border-radius: 6px;
+  background-color: #EE693F;
+  color: @primary-color;
+  margin: 30px 10px;
+  padding: 13px 30px;
+  cursor: pointer;
+  font-size: @font-size-for-bold-text;
+  font-weight: bold;
+  &:hover {
+    background-color: #F69454;
+    border-color: #ffc7a2;
+  }
+  &:active {
+    animation-name: fade;
+    animation-duration: 0.1s;
+    @keyframes fade {
+      from {
+        opacity: 0.5;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
