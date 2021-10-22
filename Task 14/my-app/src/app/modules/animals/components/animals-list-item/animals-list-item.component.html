@@ -3,16 +3,19 @@
     {{animal.kindOfAnimal + ': ' + animal.animalName}}
     <div class="main__details"
          [class._hidden]="!_isOpened">
-      <div>{{animal.age + " " + animal.detailsAge}}</div>
+      <div>Дата рождения: {{animal.birthday}}</div>
       <div>{{animal.breed}}</div>
       <div>{{animal.gender}}</div>
       <div>{{animal.hobby}}</div>
       <div>{{animal.otherFeatures}}</div>
     </div>
   </div>
-  <button class="main__button"
-          [routerLink]="['/pet',animal.id]"
-          (click)="_isEdit=true">
-    Редактировать животного
-  </button>
+  <div class="action-button">
+    <button class="edit"
+            [routerLink]="['/pet',animal.id]"
+    >Редактировать
+    </button>
+    <ng-content></ng-content>
+  </div>
+
 </ng-container>

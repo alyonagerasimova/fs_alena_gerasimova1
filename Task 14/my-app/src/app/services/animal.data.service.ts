@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ANIMALSSTUB} from "../modules/animals/animals.stub";
 import {Animal} from "../modules/types";
 
 @Injectable({
@@ -9,14 +8,12 @@ import {Animal} from "../modules/types";
 })
 export class AnimalsDataService {
 
-  private readonly data = ANIMALSSTUB;
-  private animalsUrl = 'http://localhost:3000/pet';
+  private animalsUrl = 'http://localhost:3000/animals';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>(this.animalsUrl)
@@ -36,7 +33,8 @@ export class AnimalsDataService {
     return this.http.delete<Animal>(url, this.httpOptions);
   }
 
-  public updateAnimal(animal: Animal): Observable<any> {
-    return this.http.put(this.animalsUrl, animal, this.httpOptions);
+  public updateAnimal(animal: Animal): Observable<Animal> {
+    const url = `${this.animalsUrl}/${animal.id}`;
+    return this.http.put<Animal>(url, animal, this.httpOptions);
   }
 }

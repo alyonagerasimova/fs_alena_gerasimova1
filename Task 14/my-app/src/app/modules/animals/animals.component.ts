@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AnimalsService} from "./animals.service";
 import {Animal, AnimalType} from "../types";
-import {Routes} from "@angular/router";
 import {Observable} from "rxjs";
 
 @Component({
@@ -17,18 +16,15 @@ export class AnimalsComponent implements OnInit {
   public openForm: boolean = false;
   public animalsList: Animal[] = [];
 
-  //public submitted: boolean = false;
-
   constructor(private animalsService: AnimalsService) {
+  }
+
+  ngOnInit() {
     this.animalsService.getAnimalsData()
       .subscribe(animals => {
         this.animalsList = animals;
         this.loadingComplete = true;
       });
-  }
-
-  ngOnInit() {
-
   }
 
   public hideKittens() {
@@ -46,15 +42,18 @@ export class AnimalsComponent implements OnInit {
   }
 
   public createNewAnimals() {
-    //this.router.navigate(['/animals-forms']);
     this.openForm = true;
-    //this.submitted = false;
   }
 
-  updateAnimalsList(newAnimal: Animal) {
-    this.animalsService.addAnimal(newAnimal);
-    // newAnimal.id = this._animals.length + 1;
-    // this._animals.push(newAnimal);
-    // console.log(this._animals);
+  public add(newAnimal: Animal) {
+    this.animalsService.addAnimal(newAnimal)
+      .subscribe(animal => this.animalsList.push(animal));
+  }
+
+  public delete(animal: Animal): void {
+    if(confirm("Вы действительно хотите удалить этого питомца?")){
+      this.animalsList = this.animalsList.filter(pet => pet !== animal);
+      this.animalsService.deleteAnimal(animal.id).subscribe();
+    }
   }
 }

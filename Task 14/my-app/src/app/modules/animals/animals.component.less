@@ -1,26 +1,30 @@
-@primary-color: white;
+@primary-color: #2A2734;
 @font-size-for-bold-text: 16px;
 
 h1 {
-  color: #739F3D;
+  color: @primary-color;
   margin: 20px 0 0 0;
   padding: 10px 0;
   font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
 
 .main__button {
-  border: 2px solid #F69454;
+  border: 2px solid #b36369;
+  box-shadow: 0 0 3px 1px #765255;
   border-radius: 6px;
-  background-color: #EE693F;
-  color: @primary-color;
-  margin: 30px 10px;
-  padding: 13px 30px;
+  background-color: #b37075;
+  color: #fff;
+  margin: 6px 5px;
+  padding: 6px 10px;
   cursor: pointer;
-  font-size: @font-size-for-bold-text;
+  font-size: 15px;
   font-weight: bold;
   &:hover {
-    background-color: #F69454;
-    border-color: #ffc7a2;
+    background-color: #d7cacb;
+    border-color: #cbc3c4;
+    color: #2A2734;
+    box-shadow: none;
   }
   &:active {
     animation-name: fade;
@@ -33,5 +37,19 @@ h1 {
         opacity: 1;
       }
     }
+  }
+}
+
+.delete{
+  background-color: #a19094;
+  border-radius: 10px;
+  border: 1px solid #917c81;
+  font-size: 12px;
+  padding: 4px 5px;
+  &:hover {
+    cursor: pointer;
+    background-color: #d7cacb;
+    border-color: #cbc3c4;
+    color: #2A2734;
   }
 }

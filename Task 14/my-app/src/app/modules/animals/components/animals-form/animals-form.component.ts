@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Animal, AnimalGender, AnimalType} from "../../../types";
 import {NgForm} from "@angular/forms";
+import {AnimalsService} from "../../animals.service";
 
 @Component({
   selector: 'app-animals-form',
@@ -9,7 +10,9 @@ import {NgForm} from "@angular/forms";
 })
 export class AnimalsFormComponent implements OnInit {
 
-  public genders: (AnimalGender.FEMALE | AnimalGender.MALE)[] = [AnimalGender.FEMALE, AnimalGender.MALE];
+  public genders = [AnimalGender.FEMALE, AnimalGender.MALE];
+  public types = [AnimalType.CAT, AnimalType.DOG];
+  public dateNow: string = new Date().toISOString().substr(0,10);
 
   @Input()
   public openForm: boolean = true;
@@ -27,12 +30,11 @@ export class AnimalsFormComponent implements OnInit {
     hobby: "",
     gender: AnimalGender.MALE,
     breed: "",
-    age: 0,
-    detailsAge: "",
-    id: 8
+    birthday: this.dateNow,
+    id: this.animalsService.generateId()
   };
 
-  constructor() {
+  constructor(private animalsService: AnimalsService) {
   }
 
   ngOnInit(): void {
@@ -40,6 +42,8 @@ export class AnimalsFormComponent implements OnInit {
 
   addNewAnimal(animal: Animal) {
     this.newAnimalEvent.emit(animal);
+    this.openForm = false;
+    this.onChanges(this.openForm);
   }
 
   onChanges(bool: boolean) {
@@ -48,13 +52,12 @@ export class AnimalsFormComponent implements OnInit {
 
   submitForm(form: NgForm) {
     if (form.valid) {
-
       form.reset();
     }
   }
 
   closeForm() {
     this.openForm = false;
-    console.log(this.openForm);
+    this.onChanges(this.openForm);
   }
 }

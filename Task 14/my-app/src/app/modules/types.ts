@@ -11,11 +11,10 @@ export enum AnimalGender {
 export type Animal = {
   kindOfAnimal: AnimalType,
   animalName: string,
-  age: number,
+  birthday: string,
   gender: AnimalGender,
   breed: string,
   hobby: string,
   otherFeatures: string,
-  detailsAge: string,
   id:number
 }

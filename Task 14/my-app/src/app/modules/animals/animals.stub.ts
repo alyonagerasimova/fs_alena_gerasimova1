@@ -8,8 +8,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Нравится бегать",
     gender: AnimalGender.MALE,
     breed: "Короткошерстный",
-    age: 1,
-    detailsAge: "год",
+    birthday: "2020-10-09",
     id:1
   }, {
     kindOfAnimal: AnimalType.CAT,
@@ -18,8 +17,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Спокойная",
     gender: AnimalGender.FEMALE,
     breed: "Длинношерстная",
-    age: 9,
-    detailsAge: "месяцев",
+    birthday: "2021-01-27",
     id:2
   },  {
     kindOfAnimal: AnimalType.DOG,
@@ -28,8 +26,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Обожает лакомства",
     gender: AnimalGender.MALE,
     breed: "Короткошерстный",
-    age: 11,
-    detailsAge: "месяцев",
+    birthday: "2020-12-21",
     id:3
   },  {
     kindOfAnimal: AnimalType.CAT,
@@ -38,8 +35,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Спокойная",
     gender: AnimalGender.FEMALE,
     breed: "Короткошерстная",
-    age: 6,
-    detailsAge: "месяцев",
+    birthday: "2021-04-10",
     id:4
   },  {
     kindOfAnimal: AnimalType.DOG,
@@ -48,8 +44,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Нравится бегать",
     gender: AnimalGender.MALE,
     breed: "Короткошерстный",
-    age: 6,
-    detailsAge: "месяцев",
+    birthday: "2021-04-08",
     id:5
   },{
     kindOfAnimal: AnimalType.DOG,
@@ -58,8 +53,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Спокойный",
     gender: AnimalGender.MALE,
     breed: "Короткошерстный",
-    age: 3,
-    detailsAge: "года",
+    birthday: "2018-10-03",
     id:6
   },{
     kindOfAnimal: AnimalType.CAT,
@@ -68,8 +62,7 @@ export const ANIMALSSTUB: Animal[] = [
     hobby: "Нравится бегать",
     gender: AnimalGender.MALE,
     breed: "Короткошерстный",
-    age: 3,
-    detailsAge: "месяца",
+    birthday: "2021-07-23",
     id:7
   }
 ];
