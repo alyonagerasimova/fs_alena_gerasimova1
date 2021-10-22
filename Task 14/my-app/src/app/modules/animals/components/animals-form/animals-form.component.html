@@ -91,7 +91,7 @@
           </div>
         </div>
 
-        <button type="button" class="btn" [disabled]="!animalsForm.form.valid"
+        <button type="button" class="btn" [disabled]="animalsForm.form.invalid"
                 (click)="addNewAnimal(animal); submitForm(animalsForm)"
         >Добавить
         </button>
