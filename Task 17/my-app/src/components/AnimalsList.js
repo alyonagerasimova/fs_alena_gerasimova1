@@ -9,7 +9,7 @@ export function AnimalsList({animals}) {
     const animalsListItem = animals.map((animal) =>
             <Panel key={animal.id}
                    header={animal.kindOfAnimal + ': ' + animal.animalName}>
-                <DetailsOfAnimal animal={animal}/>
+                <DetailsOfAnimal className="details_list" animal={animal}/>
             </Panel>
         );
         return (

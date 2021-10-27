@@ -3,26 +3,22 @@
 .App {
     display: flex;
     flex: 1;
-    width: 100%;
-    height: 100%;
 }
 
 .App__content {
-    background: url("image/img.png") no-repeat;
-    background-size: 100%;
+    padding-top: 20px;
     width: 100%;
     height: 100%;
 }
 
 .App-header {
     color: #2A2734;
-    margin: 20px 0 0 0;
-    padding: 10px 0;
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
+    text-align: center;
 }
 
-.App__list {
+.App__content__animals-list {
     margin: 0 auto;
     text-align: center;
     background-color: #e6e6e6;
@@ -30,5 +26,13 @@
     border: 1px solid #e0dddd;
     border-radius: 4px;
     box-shadow: 1px 1px 10px 1px #8d8d8d;
-    padding-bottom: 30px;
+    padding: 20px 15px 30px;
+}
+
+.App__content__animals-list-item{
+    padding: 16px 85px;
+}
+
+.ant-btn-primary {
+    margin: 10px 0;
 }

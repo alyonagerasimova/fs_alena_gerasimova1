@@ -2,6 +2,7 @@ import './App.css';
 import {AnimalsService} from "./services/animals-service";
 import {AnimalsList} from "./components/AnimalsList"
 import {useState} from "react";
+import { Button } from 'antd';
 
 const animalsService = new AnimalsService();
 const animalsList = animalsService.getAnimalsData();
@@ -23,18 +24,18 @@ export function App() {
     return (
         <div className="App">
             <div className="App__content">
-                <header className="App-header">
-                </header>
-                <main className="App__list">
-                    <h1>Список животных</h1>
+                <div className="App__content__animals-list">
+                    <header className="App-header">
+                        <h1>Список животных</h1>
+                    </header>
                     <div>
                         {isKittensHide
-                            ? <button onClick={handleShowClick}>Показать котиков</button>
-                            : <button onClick={handleHideClick}>Скрыть котиков</button>
+                            ? <Button type="primary" onClick={handleShowClick}>Показать котиков</Button>
+                            : <Button type="primary" onClick={handleHideClick}>Скрыть котиков</Button>
                         }
                     </div>
                     <AnimalsList animals={animals}/>
-                </main>
+                </div>
             </div>
 
         </div>
