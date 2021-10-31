@@ -1,5 +1,5 @@
 import {ANIMALSSTUB} from "./animals.stub";
-import {Animal, AnimalType} from "../components/types";
+import {Animal, AnimalType} from "../module/types";
 
 export class AnimalsService {
     private readonly data = ANIMALSSTUB;
@@ -9,8 +9,8 @@ export class AnimalsService {
     }
 
     public filterAnimalsByType(type: AnimalType): Animal[] {
-        return this.data.filter(animal =>{
+        return this.data.filter(animal => {
             return animal.kindOfAnimal !== type;
-        })
+        });
     }
 }

@@ -1,4 +1,4 @@
-import {Animal, AnimalGender, AnimalType} from "../components/types";
+import {Animal, AnimalGender, AnimalType} from "../module/types";
 
 
 export const ANIMALSSTUB: Animal[] = [

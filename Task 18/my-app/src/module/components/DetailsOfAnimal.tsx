@@ -1,9 +1,10 @@
 import {Row, Col} from 'antd';
-import {AppProps} from "./types";
+import React from "react";
+import {AppProps} from "../types";
 
-export function DetailsOfAnimal({animal}: AppProps) {
+function DetailsOfAnimal({animal}: AppProps){
     return (
-        <div className="App__content__animals-list-item">
+        <div className="App__content__animals-list-item" >
             <Row gutter={[8, 4]}>
                 <Col span={12}>Дата рождения:</Col>
                 <Col span={12}>{animal?.birthday}</Col>
@@ -17,9 +18,11 @@ export function DetailsOfAnimal({animal}: AppProps) {
                 <Col span={12}>Любимое занятие:</Col>
                 <Col span={12}>{animal?.hobby}</Col>
 
-                <Col span={12}>Особенности, умения:</Col>
+                <Col span={12}>Особенности:</Col>
                 <Col span={12}>{animal?.otherFeatures}</Col>
             </Row>
         </div>
     )
 }
+
+export const DetailsOfAnimalMemo = React.memo(DetailsOfAnimal);

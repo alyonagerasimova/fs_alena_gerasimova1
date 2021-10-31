@@ -40,6 +40,5 @@ export type AppProps = Partial<{
         title: string;
     }[];
     onSomething: Function;
-    onClick: () => void;
     onChange: (id: number) => void;
 }> & HTMLAttributes<any>;
