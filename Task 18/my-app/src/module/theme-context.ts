@@ -3,11 +3,15 @@ import React from "react";
 export const themes = {
     light: {
         background: '#e6e6e6',
-        borderColor: '#e0dddd'
+        borderColor: '#e0dddd',
+        color: '#2a2a2a',
+        filter: 'invert(0%)'
     },
     dark: {
-        background: '#7e8a9d',
-        borderColor: '#616b7e',
+        background: '#444444',
+        borderColor: '#343434',
+        color: '#e6e6e6',
+        filter: 'invert(100%)'
     }
 };
 

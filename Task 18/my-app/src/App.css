@@ -29,10 +29,14 @@
   padding: 15px 15px 10px;
 }
 
-.App__content__animals-list-item{
+.ant-row{
   padding: 16px 85px;
 }
 
 .ant-btn {
   margin: 20px 0;
+}
+
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0;
 }

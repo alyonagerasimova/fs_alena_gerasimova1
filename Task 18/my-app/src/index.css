@@ -6,7 +6,7 @@ html,body{
 
 body {
   margin: 0;
-  background: url("images/img.png") repeat;
+  background: url("images/img.png") repeat transparent;
   background-size: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

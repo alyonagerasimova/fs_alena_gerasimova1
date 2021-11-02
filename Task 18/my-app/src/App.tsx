@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
 import {ThemeContext, themes} from "./module/theme-context";
-import { AnimalsMenu } from './module/components/AnimalsMenu';
+import {AnimalsMenu} from './module/components/AnimalsMenu';
 
 export function App() {
 
@@ -11,10 +11,10 @@ export function App() {
     }
 
     return (
-        <div className="App">
-            <ThemeContext.Provider value={theme}>
+        <ThemeContext.Provider value={theme}>
+            <div className="App">
                 <AnimalsMenu changeTheme={toggleTheme}/>
-            </ThemeContext.Provider>
-        </div>
+            </div>
+        </ThemeContext.Provider>
     );
 }
