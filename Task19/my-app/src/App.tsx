@@ -4,27 +4,17 @@ import React, {useState} from "react";
 import {ThemeContext, themes} from "./module/theme-context";
 import {AnimalsMenu} from './module/components/AnimalsMenu';
 import {AnimalCreate} from "./module/components/AnimalCreate";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {AnimalsService} from "./services/animals-service";
+import {AnimalEdit} from "./module/components/AnimalEdit";
+import {DetailsOfAnimalMemo} from "./module/components/DetailsOfAnimal";
 
 export function App() {
 
+    const animalsService = new AnimalsService();
+
     return (
         <Router>
-            <div>
-                <Link to="/">Список животных</Link>
-            </div>
-            <div>
-                <Link to="/create">Добавить животного</Link>
-            </div>
-            <div>
-                <Link to="/edit">Редактировать животного</Link>
-            </div>
-
             <Switch>
                 <Route exact path="/">
                     <Home/>
@@ -32,13 +22,23 @@ export function App() {
                 <Route exact path="/create">
                     <div className="container">
                         <div className="content">
-                            <AnimalCreate/>
+                            <AnimalCreate animals={animalsService}/>
                         </div>
                     </div>
                 </Route>
                 <Route exact path="/edit">
-                    <Home/>
+                    <div className="container">
+                        <div className="content">
+                            <AnimalEdit/>
+                        </div>
+                    </div>
                 </Route>
+                <Route path='/pet/:id' render={
+                    ({match}) => {
+                        const {id} = match.params;
+                        return <DetailsOfAnimalMemo className="details_list" petId={id}/>
+                    }
+                }/>
             </Switch>
         </Router>
     );
@@ -59,3 +59,14 @@ function Home() {
         </ThemeContext.Provider>
     );
 }
+
+// <Link key={animal.id}
+//       to={{pathname: `/pet/${animal.id}`}}>
+// </Link>
+// <Route path='/pet/:id' render={
+//     ({match}) => {
+//         const {id} = match.params;
+//
+//         return <DetailsOfAnimalMemo className="details_list" animal={animal} petId={id}/>
+//     }
+// } />

@@ -13,4 +13,14 @@ export class AnimalsService {
             return animal.kindOfAnimal !== type;
         });
     }
+
+    public generateId(): number {
+        return this.data.length > 0 ? Math.max(...this.data.map(animal => animal.id)) + 1 : 1;
+    }
+
+    public getAnimalById(id: number){
+        return this.data.find(animal => {
+            return animal.id === id;
+        })
+    }
 }

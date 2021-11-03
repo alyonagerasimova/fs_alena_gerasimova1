@@ -15,11 +15,16 @@ export function AnimalsList({animals}: AppProps) {
                        return (
                            <span style={{color: theme.color}}>
                                {animal.kindOfAnimal + ': ' + animal.animalName}
-                           </span>)
+                               {/*<Button>*/}
+                               {/*  <Link to="/edit">Редактировать животного</Link>*/}
+                               {/*</Button>*/}
+                           </span>
+                       )
                    }
                    }
-               </ThemeContext.Consumer>}>
-            < DetailsOfAnimalMemo className="details_list" animal={animal}/>
+               </ThemeContext.Consumer>}
+        >
+            <DetailsOfAnimalMemo className="details_list" animal={animal}/>
         </Panel>
     ), [animals]);
 
