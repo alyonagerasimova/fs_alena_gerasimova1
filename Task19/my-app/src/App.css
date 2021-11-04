@@ -34,7 +34,11 @@
 }
 
 .ant-btn {
-  margin: 20px 0;
+  margin: 5px 10px;
+}
+
+.buttonEdit{
+  margin-left: 20px;
 }
 
 .ant-collapse-content > .ant-collapse-content-box {

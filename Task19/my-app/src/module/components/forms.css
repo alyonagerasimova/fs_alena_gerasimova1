@@ -21,12 +21,18 @@
     width: 32%;
     min-width: 240px;
     background-color: #FFFFFF;
+    padding-top: 20px;
+    text-align: center;
 }
 
 .form-group {
+    text-align: left;
     margin: 0 70px 15px 70px;
 }
 
+.form-select-control{
+    padding-right: 10px;
+}
 
 .btn {
     font-size: 21px;
@@ -51,14 +57,6 @@
     text-decoration: none;
     filter: alpha(opacity=50);
     opacity: .5;
-}
-
-input.ng-touched.ng-valid {
-    border-left: 5px solid #42A948;
-}
-
-input.ng-touched.ng-invalid {
-    border-left: 5px solid #a94442;
 }
 
 .validation {

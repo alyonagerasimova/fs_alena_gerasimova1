@@ -1,13 +1,14 @@
-import {Collapse} from "antd";
+import {Button, Collapse} from "antd";
 import React, {useMemo} from "react";
 import {Animal, AppProps} from "../types";
 import {DetailsOfAnimalMemo} from "./DetailsOfAnimal";
 import {ThemeContext} from "../theme-context";
+import {Link} from "react-router-dom";
+
 
 const {Panel} = Collapse;
 
 export function AnimalsList({animals}: AppProps) {
-
     const animalsListItem = useMemo(() => animals?.map((animal: Animal) =>
         <Panel key={animal.id}
                header={<ThemeContext.Consumer>
@@ -15,9 +16,12 @@ export function AnimalsList({animals}: AppProps) {
                        return (
                            <span style={{color: theme.color}}>
                                {animal.kindOfAnimal + ': ' + animal.animalName}
-                               {/*<Button>*/}
-                               {/*  <Link to="/edit">Редактировать животного</Link>*/}
-                               {/*</Button>*/}
+                               <Button shape="round" className="buttonEdit">
+                                  <Link key={animal.id}
+                                        to={{pathname: `/pet/${animal.id}`}}>
+                                      Редактировать животного
+                                  </Link>
+                               </Button>
                            </span>
                        )
                    }

@@ -1,4 +1,4 @@
-import {AnimalsService} from "../../services/animals-service";
+import {appAnimalsService} from "../../services/animals-service";
 import React, {useState} from "react";
 import {Animal, AnimalType} from "../types";
 import {Button} from "antd";
@@ -6,16 +6,13 @@ import {AnimalsList} from "./AnimalsList";
 import {ThemeContext} from "../theme-context";
 import {Link} from "react-router-dom";
 
-const animalsService = new AnimalsService();
-const animalsList = animalsService.getAnimalsData();
-
-export function AnimalsMenu(props: any) {
-
+export function AnimalsMainComponent(props: any) {
+    const animalsList = appAnimalsService.getAnimalsData();
     const [animals, setAnimals] = useState<Animal[]>(animalsList);
     const [isKittensHide, setIsKittensHide] = useState<boolean>(false);
 
     const handleHideClick = () => {
-        setAnimals(() => animalsService.filterAnimalsByType(AnimalType.CAT));
+        setAnimals(() => appAnimalsService.filterAnimalsByType(AnimalType.CAT));
         setIsKittensHide(() => true);
     }
 
@@ -23,7 +20,6 @@ export function AnimalsMenu(props: any) {
         setAnimals(() => animalsList);
         setIsKittensHide(() => false);
     }
-
 
     return (
         <div className="App__content">
@@ -48,13 +44,11 @@ export function AnimalsMenu(props: any) {
                                     <Link to="/create">Добавить животного</Link>
                                 </Button>
                             </div>
-                            <AnimalsList animals={animals}/>
+                            <AnimalsList animals={animals} />
                         </div>
                     );
-                }
-                }
+                }}
             </ThemeContext.Consumer>
-
         </div>
     )
 }

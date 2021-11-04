@@ -1,8 +1,9 @@
 import {ANIMALSSTUB} from "./animals.stub";
 import {Animal, AnimalType} from "../module/types";
+import {FormikValues} from "formik";
 
 export class AnimalsService {
-    private readonly data = ANIMALSSTUB;
+    private data = ANIMALSSTUB;
 
     public getAnimalsData(): Animal[] {
         return this.data;
@@ -18,9 +19,17 @@ export class AnimalsService {
         return this.data.length > 0 ? Math.max(...this.data.map(animal => animal.id)) + 1 : 1;
     }
 
-    public getAnimalById(id: number){
-        return this.data.find(animal => {
-            return animal.id === id;
-        })
+    public getAnimalById(id: number | string): Animal {
+        // @ts-ignore
+        return this.data.find(animal => animal.id == id);
+    }
+
+    public updateAnimal(value: any): void {
+        this.data = [
+            ...this.data.filter(animal => animal.id != value.id),
+            value
+        ];
     }
 }
+
+export const appAnimalsService = new AnimalsService();
