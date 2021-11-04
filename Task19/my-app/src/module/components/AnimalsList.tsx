@@ -1,10 +1,9 @@
 import {Button, Collapse} from "antd";
-import React, {useMemo} from "react";
+import {useMemo} from "react";
 import {Animal, AppProps} from "../types";
 import {DetailsOfAnimalMemo} from "./DetailsOfAnimal";
 import {ThemeContext} from "../theme-context";
 import {Link} from "react-router-dom";
-
 
 const {Panel} = Collapse;
 

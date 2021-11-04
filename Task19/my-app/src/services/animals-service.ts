@@ -1,6 +1,5 @@
 import {ANIMALSSTUB} from "./animals.stub";
 import {Animal, AnimalType} from "../module/types";
-import {FormikValues} from "formik";
 
 export class AnimalsService {
     private data = ANIMALSSTUB;

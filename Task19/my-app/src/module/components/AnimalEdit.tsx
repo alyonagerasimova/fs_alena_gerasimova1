@@ -1,12 +1,11 @@
 import {Form, Formik} from 'formik';
-import React from "react";
 import {appAnimalsService} from "../../services/animals-service";
 import {AnimalForm} from "./AnimalForm";
 import {Validation} from "./Validation";
-import {Link, Outlet, useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 export function AnimalEdit() {
-    let {id}:any = useParams();
+    let {id}: any = useParams();
     const animalSelectedId = appAnimalsService.getAnimalById(+id);
     const navigate = useNavigate();
     return (
@@ -34,7 +33,7 @@ export function AnimalEdit() {
                         <AnimalForm errors={errors} touched={touched}/>
                         <div>
                             <button type="submit" className="btn">
-                                    Сохранить
+                                Сохранить
                             </button>
                             <button type="button" className="btn">
                                 <Link to="/">Закрыть</Link>

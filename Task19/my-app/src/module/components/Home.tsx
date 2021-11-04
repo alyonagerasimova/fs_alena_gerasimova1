@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {ThemeContext, themes} from "../theme-context";
 import {AnimalsMainComponent} from "./AnimalsMainComponent";
 
@@ -9,9 +9,9 @@ export function Home() {
     }
     return (
         <ThemeContext.Provider value={theme}>
-        <div className="App">
-        <AnimalsMainComponent changeTheme={toggleTheme}/>
-    </div>
-    </ThemeContext.Provider>
-);
+            <div className="App">
+                <AnimalsMainComponent changeTheme={toggleTheme}/>
+            </div>
+        </ThemeContext.Provider>
+    );
 }

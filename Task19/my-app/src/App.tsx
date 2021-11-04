@@ -2,7 +2,7 @@ import './App.css';
 import './module/components/forms.css';
 import React from "react";
 import {AnimalCreate} from "./module/components/AnimalCreate";
-import {BrowserRouter, BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {AnimalEdit} from "./module/components/AnimalEdit";
 import {Home} from './module/components/Home';
 
@@ -11,14 +11,14 @@ export function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/create">
+                <Route path="/create" element={
                     <div className="container">
                         <div className="content">
                             <AnimalCreate/>
                         </div>
-                    </div>
+                    </div>}>
                 </Route>
-                <Route path="/pet/:id" children={
+                <Route path="/pet/:id" element={
                     <div className="container">
                         <div className="content">
                             <AnimalEdit/>
@@ -28,16 +28,4 @@ export function App() {
             </Routes>
         </BrowserRouter>
     );
-}
-
-{/*<Route path='/pet/:id' children={
-       ({match}) => {
-            const {id} = match.params;
-            return (
-                <div className="container">
-                    <div className="content">
-                        <AnimalEdit id={id}/>
-                    </div>
-                </div>)
-        }}/>*/
 }

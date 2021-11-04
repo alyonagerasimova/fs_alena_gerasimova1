@@ -1,5 +1,4 @@
 import {Field} from "formik";
-import React from "react";
 import {AnimalGender, AnimalType} from "../types";
 
 export function AnimalForm({errors, touched}: any) {

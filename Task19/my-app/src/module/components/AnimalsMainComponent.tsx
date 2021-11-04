@@ -1,5 +1,5 @@
 import {appAnimalsService} from "../../services/animals-service";
-import React, {useState} from "react";
+import {useState} from "react";
 import {Animal, AnimalType} from "../types";
 import {Button} from "antd";
 import {AnimalsList} from "./AnimalsList";
@@ -44,7 +44,7 @@ export function AnimalsMainComponent(props: any) {
                                     <Link to="/create">Добавить животного</Link>
                                 </Button>
                             </div>
-                            <AnimalsList animals={animals} />
+                            <AnimalsList animals={animals}/>
                         </div>
                     );
                 }}
