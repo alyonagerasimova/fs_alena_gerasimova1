@@ -1,6 +1,6 @@
 import {Animal, AnimalGender, AnimalType} from "../module/types";
 
-export let ANIMALSSTUB: Animal[] = [
+export const ANIMALSSTUB: Animal[] = [
   {
     kindOfAnimal: AnimalType.CAT,
     animalName: "Лео",
