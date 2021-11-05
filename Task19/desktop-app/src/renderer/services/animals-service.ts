@@ -26,7 +26,12 @@ export class AnimalsService {
   }
 
   public updateAnimal(value: any): void {
-    this.data = [...this.data.filter((animal) => animal.id != value.id), value];
+    this.data = [
+      ...this.data.filter((animal) => animal.id != value.id),
+      value,
+    ].sort((a, b) => {
+      return a.id - b.id;
+    });
   }
 }
 
