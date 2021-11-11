@@ -8,7 +8,7 @@ export const addAnimal = createAction(
 );
 export const removeAnimal = createAction(
   'RemoveAnimal',
-  props<{ animal: Animal }>()
+  props<{ animalId: number }>()
 );
 export const editAnimal = createAction(
   'EditAnimal',

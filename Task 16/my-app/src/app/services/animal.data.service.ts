@@ -28,9 +28,9 @@ export class AnimalsDataService {
     return this.http.post<Animal>(this.animalsUrl, animal, this.httpOptions);
   }
 
-  public deleteAnimal(id: number): Observable<Animal> {
+  public deleteAnimal(id: number): Observable<unknown> {
     const url = `${this.animalsUrl}/${id}`;
-    return this.http.delete<Animal>(url, this.httpOptions);
+    return this.http.delete<unknown>(url, this.httpOptions);
   }
 
   public updateAnimal(animal: Animal): Observable<Animal> {

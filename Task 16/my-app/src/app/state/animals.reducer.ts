@@ -1,5 +1,12 @@
 import {createReducer, on} from "@ngrx/store";
-import {addAnimal, editAnimal, hiddenListOfAnimals, removeAnimal, retrievedAnimalList} from "./animals.actions";
+import {
+  addAnimal,
+  editAnimal,
+  fetchRetrievedAnimalList,
+  hiddenListOfAnimals,
+  removeAnimal,
+  retrievedAnimalList
+} from "./animals.actions";
 import {AppState, initialState} from "./app.state";
 
 export const animalsReducer = createReducer<AppState>(
@@ -8,12 +15,19 @@ export const animalsReducer = createReducer<AppState>(
       return {
         ...state,
         animals: animalsList,
+        isLoading: false
       }
   }),
-  on(removeAnimal, (state, {animal}) => {
+  on(fetchRetrievedAnimalList, (state) => {
     return {
       ...state,
-      animals: state.animals.filter(pet => pet !== animal),
+      isLoading: true
+    }
+  }),
+  on(removeAnimal, (state, {animalId}) => {
+    return {
+      ...state,
+      animals: state.animals.filter(pet => pet.id !== animalId),
     }
   }),
   on(addAnimal, (state, {newAnimal}) => {

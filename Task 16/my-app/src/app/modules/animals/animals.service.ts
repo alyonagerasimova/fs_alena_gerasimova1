@@ -33,7 +33,7 @@ export class AnimalsService {
   }
 
   public generateId(): number {
-    return this.data.length > 0 ? Math.max(...this.data.map(animal => animal.id)) + 1 : 11;
+    return this.data.length > 0 ? Math.max(...this.data.map(animal => animal.id)) + 1 : 1;
   }
 
   public getAnimalById(id: string): Observable<Animal> {
@@ -58,8 +58,8 @@ export class AnimalsService {
       );
   }
 
-  public deleteAnimal(id: number): Observable<Animal> {
-    return this.animalsDataService.deleteAnimal(id)
+  public deleteAnimal(animal: Animal): Observable<unknown> {
+    return this.animalsDataService.deleteAnimal(animal.id)
       .pipe(
         catchError(err => {
           console.error(err);

@@ -15,6 +15,8 @@
     Добавить нового животного
   </button>
 
+  <div *ngIf="_isLoading$ | async">Данные загружаются</div>
+
   <app-animals-list-item *ngFor="let animal of (_animalsList$ | async); index as i; trackBy: trackByFn "
                          [animal]="animal"
                          [hidden]="false">

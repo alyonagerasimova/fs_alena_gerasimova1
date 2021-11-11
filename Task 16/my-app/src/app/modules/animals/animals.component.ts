@@ -3,7 +3,13 @@ import {AnimalsService} from "./animals.service";
 import {Animal, AnimalType} from "../types";
 import {Observable} from "rxjs";
 import {select, Store} from "@ngrx/store";
-import {fetchAddAnimal, fetchRetrievedAnimalList, hiddenListOfAnimals, removeAnimal} from "../../state/animals.actions";
+import {
+  fetchAddAnimal,
+  fetchRemoveAnimal,
+  fetchRetrievedAnimalList,
+  hiddenListOfAnimals,
+  removeAnimal
+} from "../../state/animals.actions";
 import {selectAnimalCollection} from "../../state/animals.selectors";
 import {State} from "../../reducers";
 
@@ -60,7 +66,10 @@ export class AnimalsComponent implements OnInit {
   }
 
   public onRemove(animal: Animal) {
-    confirm("Вы действительно хотите удалить этого питомца?") && this.store.dispatch(removeAnimal({animal}));
+    if (confirm("Вы действительно хотите удалить этого питомца?")){
+      this.store.dispatch(fetchRemoveAnimal({animal}));
+    }
+
   }
 
   // public add(newAnimal: Animal) {
