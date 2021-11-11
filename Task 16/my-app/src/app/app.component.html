@@ -1,0 +1,7 @@
+<div class="body-style">
+  <div [ngClass]="myClass">
+    <app-animals-list [animalsList]="animalsList$ | async" (add)="onAdd($event)" (remove)="onRemove($event)">
+
+    </app-animals-list>
+  </div>
+</div>
