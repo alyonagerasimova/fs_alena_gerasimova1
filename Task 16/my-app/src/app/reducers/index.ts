@@ -1,16 +1,13 @@
 import {
-  ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
 import {environment} from '../../environments/environment';
-import {Animal} from "../modules/types";
 import {animalsReducer} from "../state/animals.reducer";
+import {AppState} from "../state/app.state";
 
 export interface State {
-  animalsList: Animal[]
+  animalsList: AppState
 }
 
 export const reducers: ActionReducerMap<State> = {

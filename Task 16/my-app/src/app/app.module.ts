@@ -12,6 +12,7 @@ import {animalsReducer} from "./state/animals.reducer";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import {AnimalsEffects} from "./state/animals.effect";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { EffectsModule } from '@ngrx/effects';
       metaReducers
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([AnimalsEffects])
   ],
   bootstrap: [AppComponent]
 })

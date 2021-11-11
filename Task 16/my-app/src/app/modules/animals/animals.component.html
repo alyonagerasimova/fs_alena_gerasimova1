@@ -1,6 +1,5 @@
 <h1>Список животных</h1>
-<div *ngIf="loadingComplete">
-  <button class="main__button" *ngIf="_isKittensShow; else ref"
+  <button class="main__button" *ngIf="!(_isKittenHide$ | async); else ref"
           (click)="hideKittens()">
     Скрыть котиков
   </button>
@@ -16,19 +15,18 @@
     Добавить нового животного
   </button>
 
-  <app-animals-list-item *ngFor="let animal of animalsList; index as i; trackBy: trackByFn "
+  <app-animals-list-item *ngFor="let animal of (_animalsList$ | async); index as i; trackBy: trackByFn "
                          [animal]="animal"
                          [hidden]="false">
     <button class="delete"
-            (click)="remove.emit(animal)"
+            (click)="onRemove(animal)"
     >Удалить</button>
   </app-animals-list-item>
-</div>
 <div>
   <app-animals-form
     [(openForm)]="openForm"
-    *ngIf="openForm && loadingComplete"
-    (newAnimalEvent)="add.emit($event)"
+    *ngIf="openForm && !(_isLoading$ | async)"
+    (newAnimalEvent)="onAdd($event)"
   ></app-animals-form>
 
 </div>

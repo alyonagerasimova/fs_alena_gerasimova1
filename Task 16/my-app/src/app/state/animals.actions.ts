@@ -3,24 +3,39 @@ import {Animal, AnimalType} from "../modules/types";
 import {FormGroup} from "@angular/forms";
 
 export const addAnimal = createAction(
-  '[Animals List] Add Animal',
+  'AddNewAnimal',
   props<{ newAnimal: Animal }>()
 );
 export const removeAnimal = createAction(
-  '[Animals List] Remove Animal',
+  'RemoveAnimal',
   props<{ animal: Animal }>()
 );
 export const editAnimal = createAction(
-  '[Animal] Edit Animal',
-  props<{ formModel: FormGroup }>()
+  'EditAnimal',
+  props<{ animal: Animal }>()
 );
 
 export const hiddenListOfAnimals = createAction(
-  '[Animals List] Hide Type',
-  props<{ typeOfAnimal: AnimalType }>()
+  'HiddenAnimalList',
+  props<{ typeOfAnimal: AnimalType | null }>()
 );
 
 export const retrievedAnimalList = createAction(
-  '[Animals List/API] Retrieve Animals Success',
+  'AnimalList',
   props<{ animalsList: Animal[] }>()
 );
+
+export const fetchAddAnimal = createAction(
+  'fetchAddNewAnimal',
+  props<{ newAnimal: Animal }>()
+);
+export const fetchRemoveAnimal = createAction(
+  'fetchRemoveAnimal',
+  props<{ animal: Animal }>()
+);
+export const fetchEditAnimal = createAction(
+  'fetchEditAnimal',
+  props<{ formModel: FormGroup }>()
+);
+
+export const fetchRetrievedAnimalList = createAction('fetchAnimalList');

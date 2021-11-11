@@ -1,7 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AnimalsService} from "./animals.service";
 import {Animal, AnimalType} from "../types";
 import {Observable} from "rxjs";
+import {select, Store} from "@ngrx/store";
+import {fetchAddAnimal, fetchRetrievedAnimalList, hiddenListOfAnimals, removeAnimal} from "../../state/animals.actions";
+import {selectAnimalCollection} from "../../state/animals.selectors";
+import {State} from "../../reducers";
 
 @Component({
   selector: 'app-animals-list',
@@ -10,35 +14,37 @@ import {Observable} from "rxjs";
 })
 export class AnimalsComponent implements OnInit {
 
-  @Input() animalsList!: Animal[];
-  @Output() add = new EventEmitter();
-  @Output() remove = new EventEmitter();
+  public _animalsList$: Observable<Animal[]> = this.store.pipe(
+    select('animalsList'),
+    select(selectAnimalCollection)
+  );
 
-  public loadingComplete = false;
-  public _isKittensShow: boolean = true;
-  public animalsObservable: Observable<Animal[]> = this.animalsService.getAnimalsData();
+  public _isKittenHide$: Observable<boolean> = this.store.select(state => state.animalsList.currentKindOfAnimal === AnimalType.CAT);
+  public _isLoading$: Observable<boolean> = this.store.select(state => state.animalsList.isLoading || false);
+
   public openForm: boolean = false;
+
   //public animalsList: Animal[] = [];
 
-  constructor(private animalsService: AnimalsService) {
+  constructor(private store: Store<State>, private animalsService: AnimalsService) {
+    this.store.subscribe(console.log);
   }
 
   ngOnInit() {
-    this.animalsService.getAnimalsData()
-      .subscribe(animals => {
-        this.animalsList = animals;
-        this.loadingComplete = true;
-      });
+    // this._animalsList$ = this.store
+    //   .pipe(
+    //     select(state => state.currentKKindOfAnimal ? state.animals.filter(animal => animal.kindOfAnimal !== state.currentKKindOfAnimal) : state.animals),
+    //   );
+
+    this.store.dispatch(fetchRetrievedAnimalList())
   }
 
   public hideKittens() {
-    this._isKittensShow = false;
-    this.animalsList = this.animalsService.filterAnimalsByType(AnimalType.CAT);
+    this.store.dispatch(hiddenListOfAnimals({typeOfAnimal: AnimalType.CAT}))
   }
 
   public showKittens() {
-    this._isKittensShow = true;
-    this.animalsList = this.animalsService.data;
+    this.store.dispatch(hiddenListOfAnimals({typeOfAnimal: null}))
   }
 
   public trackByFn(index: number, animal: Animal): number {
@@ -47,6 +53,14 @@ export class AnimalsComponent implements OnInit {
 
   public createNewAnimals() {
     this.openForm = true;
+  }
+
+  public onAdd(newAnimal: Animal) {
+    this.store.dispatch(fetchAddAnimal({newAnimal}));
+  }
+
+  public onRemove(animal: Animal) {
+    confirm("Вы действительно хотите удалить этого питомца?") && this.store.dispatch(removeAnimal({animal}));
   }
 
   // public add(newAnimal: Animal) {

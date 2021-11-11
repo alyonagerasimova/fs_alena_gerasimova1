@@ -1,28 +1,39 @@
-import {AnimalsDataService} from "../services/animal.data.service";
 import {createReducer, on} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {Animal, AnimalType} from "../modules/types";
 import {addAnimal, editAnimal, hiddenListOfAnimals, removeAnimal, retrievedAnimalList} from "./animals.actions";
-import {AnimalsService} from "../modules/animals/animals.service";
+import {AppState, initialState} from "./app.state";
 
-
-export const initialStateList: Animal[] = [];
-
-export const animalsReducer = createReducer(
-  initialStateList,
-  on(retrievedAnimalList, (state, {animalsList}) => animalsList),
-
-  on(removeAnimal, (state, {animal}) => {
-    if (confirm("Вы действительно хотите удалить этого питомца?")) {
-      return state.filter(pet => pet !== animal)
-    }
-    return state;
+export const animalsReducer = createReducer<AppState>(
+  initialState,
+  on(retrievedAnimalList, (state, {animalsList}) => {
+      return {
+        ...state,
+        animals: animalsList,
+      }
   }),
-  on(addAnimal, (state, {newAnimal}) => [...state, newAnimal]),
-  on(editAnimal, (state, {formModel}) => [...state, formModel.value]),
-  on(hiddenListOfAnimals, (state, {typeOfAnimal}) => {
-    return state.filter(animal => {
-      return animal.kindOfAnimal !== typeOfAnimal;
-    })
+  on(removeAnimal, (state, {animal}) => {
+    return {
+      ...state,
+      animals: state.animals.filter(pet => pet !== animal),
+    }
+  }),
+  on(addAnimal, (state, {newAnimal}) => {
+    return {
+      ...state,
+      animals: [
+        ...state.animals,
+        newAnimal
+      ]
+    }
+  }),
+  on(editAnimal, (state, {animal}) => {
+    return {
+      animals: [...state.animals.filter(it => it.id !== animal.id), animal]
+    }
+  }),
+  on(hiddenListOfAnimals, (state: AppState, {typeOfAnimal}) => {
+    return {
+      ...state,
+      currentKindOfAnimal: typeOfAnimal,
+    }
   })
 );
