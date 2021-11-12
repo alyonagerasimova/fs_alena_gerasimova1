@@ -32,7 +32,6 @@ export const animalsReducer = createReducer<AppState>(
   }),
   on(addAnimal, (state, {newAnimal}) => {
     return {
-      ...state,
       animals: [
         ...state.animals,
         newAnimal

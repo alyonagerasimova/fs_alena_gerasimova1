@@ -15,7 +15,7 @@
     Добавить нового животного
   </button>
 
-  <div *ngIf="_isLoading$ | async">Данные загружаются</div>
+  <div *ngIf="_isLoading$ | async">Данные загружаются...</div>
 
   <app-animals-list-item *ngFor="let animal of (_animalsList$ | async); index as i; trackBy: trackByFn "
                          [animal]="animal"
@@ -28,7 +28,7 @@
   <app-animals-form
     [(openForm)]="openForm"
     *ngIf="openForm && !(_isLoading$ | async)"
-    (newAnimalEvent)="onAdd($event)"
+    (add)="onAdd($event)"
   ></app-animals-form>
 
 </div>

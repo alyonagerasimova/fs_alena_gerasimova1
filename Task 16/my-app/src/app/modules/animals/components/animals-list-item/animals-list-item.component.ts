@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Animal} from "../../../types";
-import {AnimalsService} from "../../animals.service";
 
 @Component({
   selector: 'app-animals-list-item',
@@ -20,9 +19,7 @@ export class AnimalsListItemComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-    console.log(this.animal.animalName);
-  }
+  ngOnInit(): void {}
 
   public switchDetailsView(): void {
     this._isOpened = !this._isOpened;

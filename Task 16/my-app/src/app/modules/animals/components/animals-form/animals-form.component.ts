@@ -8,7 +8,7 @@ import {AnimalsService} from "../../animals.service";
   templateUrl: './animals-form.component.html',
   styleUrls: ['./animals-form.component.less']
 })
-export class AnimalsFormComponent implements OnInit {
+export class AnimalsFormComponent {
 
   public genders = [AnimalGender.FEMALE, AnimalGender.MALE];
   public types = [AnimalType.CAT, AnimalType.DOG];
@@ -18,10 +18,10 @@ export class AnimalsFormComponent implements OnInit {
   public openForm: boolean = true;
 
   @Output()
-  public openFormChange = new EventEmitter<boolean>();
+  public add = new EventEmitter<Animal>();
 
   @Output()
-  public newAnimalEvent = new EventEmitter<Animal>();
+  public openFormChange = new EventEmitter<boolean>();
 
   public animal: Animal = {
     kindOfAnimal: AnimalType.CAT,
@@ -37,23 +37,19 @@ export class AnimalsFormComponent implements OnInit {
   constructor(private animalsService: AnimalsService) {
   }
 
-  ngOnInit(): void {
+  submitForm(form: NgForm) {
+    if (form.valid) {
+      this.add.emit({
+        ...this.animal,
+      });
+      this.closeForm();
+      form.reset();
+    }
   }
 
-  addNewAnimal(animal: Animal) {
-    this.newAnimalEvent.emit(animal);
-    this.openForm = false;
-    this.onChanges(this.openForm);
-  }
 
   onChanges(bool: boolean) {
     this.openFormChange.emit(bool);
-  }
-
-  submitForm(form: NgForm) {
-    if (form.valid) {
-      form.reset();
-    }
   }
 
   closeForm() {
