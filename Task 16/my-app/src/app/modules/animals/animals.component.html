@@ -1,0 +1,34 @@
+<h1>Список животных</h1>
+  <button class="main__button" *ngIf="!(_isKittenHide$ | async); else ref"
+          (click)="hideKittens()">
+    Скрыть котиков
+  </button>
+  <ng-template #ref>
+    <button class="main__button"
+            (click)="showKittens()">
+      Показать котиков
+    </button>
+  </ng-template>
+
+  <button class="main__button"
+          (click)="createNewAnimals()">
+    Добавить нового животного
+  </button>
+
+  <div *ngIf="_isLoading$ | async">Данные загружаются...</div>
+
+  <app-animals-list-item *ngFor="let animal of (_animalsList$ | async); index as i; trackBy: trackByFn "
+                         [animal]="animal"
+                         [hidden]="false">
+    <button class="delete"
+            (click)="onRemove(animal)"
+    >Удалить</button>
+  </app-animals-list-item>
+<div>
+  <app-animals-form
+    [(openForm)]="openForm"
+    *ngIf="openForm && !(_isLoading$ | async)"
+    (add)="onAdd($event)"
+  ></app-animals-form>
+
+</div>

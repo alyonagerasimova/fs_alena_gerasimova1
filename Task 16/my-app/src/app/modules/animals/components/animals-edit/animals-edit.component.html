@@ -1,0 +1,82 @@
+<div>
+  <div class="container">
+    <div class="content">
+      <form *ngIf="formModel" [formGroup]="formModel" novalidate>
+        <h1>Редактировать животного</h1>
+
+        <div class="form-group">
+          <label for="name-input">Кличка</label>
+          <input id="name-input" class="form-control" type="text" placeholder="Кличка" formControlName="animalName">
+          <div class="validation" *ngIf="formModel.controls['animalName'].invalid && formModel.controls['animalName'].touched">
+            Обязательное поле, не короче 2 символов
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="breed-input">Порода</label>
+          <input id="breed-input" class="form-control" type="text" placeholder="Порода" formControlName="breed">
+          <div class="validation" *ngIf="formModel.controls['breed'].invalid && formModel.controls['breed'].touched">
+            Обязательное поле, не короче 2 символов
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type-select">Тип животного</label>
+          <select id="type-select" class="form-control" formControlName="kindOfAnimal">
+            <option *ngFor="let type of types" [value]="type">{{type}}</option>
+          </select>
+          <div class="validation" *ngIf="formModel.controls['kindOfAnimal'].invalid && formModel.controls['kindOfAnimal'].touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender-select">Пол животного</label>
+          <select id="gender-select" class="form-control" formControlName="gender">
+            <option *ngFor="let _gender of genders" [value]="_gender">{{_gender}}</option>
+          </select>
+          <div class="validation" *ngIf="formModel.controls['gender'].invalid && formModel.controls['gender'].touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="birthday-input">Дата рождения</label>
+          <input id="birthday-input" class="form-control" type="date" formControlName="birthday">
+          <div class="validation" *ngIf="formModel.controls['birthday'].invalid && formModel.controls['birthday'].touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hobby-input">Хобби, интересы</label>
+          <input id="hobby-input" class="form-control" type="text" placeholder="Хобби, интересы"
+                 formControlName="hobby">
+          <div class="validation" *ngIf="formModel.controls['hobby'].invalid && formModel.controls['hobby'].touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="features-input">Особенности, другие характеристики</label>
+          <input id="features-input" class="form-control" type="text" placeholder="Особенности, другие характеристики"
+                 formControlName="otherFeatures">
+          <div class="validation" *ngIf="formModel.controls['otherFeatures'].invalid && formModel.controls['otherFeatures'].touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <button type="button" class="btn"
+                routerLink="/"
+                [disabled]="formModel.invalid"
+                (click)="onSave()"
+        >Сохранить
+        </button>
+        <button type="button" class="btn"
+                routerLink="/"
+        >Закрыть
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

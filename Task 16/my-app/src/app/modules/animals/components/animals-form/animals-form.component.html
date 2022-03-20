@@ -1,0 +1,107 @@
+<div [hidden]="!openForm">
+  <div class="container">
+    <div class="content">
+      <form novalidate #animalsForm="ngForm">
+        <h1>Новое животное</h1>
+
+        <div class="form-group">
+          <label for="name-input">Кличка</label>
+          <input id="name-input" class="form-control" type="text" placeholder="Кличка"
+                 required minlength="2"
+                 [(ngModel)]="animal.animalName"
+                 name="animalName"
+                 #animalName="ngModel">
+          <div class="validation" *ngIf="animalName.invalid && animalName.touched">
+            Обязательное поле, не короче 2 символов
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="breed-input">Порода</label>
+          <input id="breed-input" class="form-control" type="text" placeholder="Порода"
+                 required minlength="2"
+                 [(ngModel)]="animal.breed"
+                 name="breed"
+                 #breed="ngModel">
+          <div class="validation" *ngIf="breed.invalid && breed.touched">
+            Обязательное поле, не короче 2 символов
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type-select">Тип животного</label>
+          <select id="type-select" class="form-control"
+                  required
+                  [(ngModel)]="animal.kindOfAnimal"
+                  name="kindOfAnimal"
+                  #kindOfAnimal="ngModel">
+            <option *ngFor="let type of types" [value]="type">{{type}}</option>
+          </select>
+          <div class="validation" *ngIf="kindOfAnimal.invalid && kindOfAnimal.touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender-select">Пол животного</label>
+          <select id="gender-select" class="form-control"
+                  required
+                  [(ngModel)]="animal.gender"
+                  name="gender"
+                  #gender="ngModel">
+            <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+          </select>
+          <div class="validation" *ngIf="gender.invalid && gender.touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="birthday-input">Дата рождения</label>
+          <input id="birthday-input" class="form-control" type="date"
+                 required
+                 [max]="dateNow"
+                 [(ngModel)]="animal.birthday"
+                 name="birthday"
+                 #birthday="ngModel">
+          <div class="validation" *ngIf="birthday.invalid && birthday.touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hobby-input">Хобби, интересы</label>
+          <input id="hobby-input" class="form-control" type="text" placeholder="Хобби, интересы"
+                 [(ngModel)]="animal.hobby"
+                 name="hobby"
+                 #hobby="ngModel">
+          <div class="validation" *ngIf="hobby.invalid && hobby.touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="features-input">Особенности, другие характеристики</label>
+          <input id="features-input" class="form-control" type="text" placeholder="Особенности, другие характеристики"
+                 [(ngModel)]="animal.otherFeatures"
+                 name="otherFeatures"
+                 #otherFeatures="ngModel">
+          <div class="validation" *ngIf="otherFeatures.invalid && otherFeatures.touched">
+            Некорректное поле
+          </div>
+        </div>
+
+        <button type="button" class="btn" [disabled]="animalsForm.form.invalid"
+                (click)=" submitForm(animalsForm)"
+        >Добавить
+        </button>
+
+        <button type="button" class="btn"
+                (click)="closeForm()"
+        >Закрыть
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
