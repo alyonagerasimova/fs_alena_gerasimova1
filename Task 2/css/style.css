@@ -9,6 +9,24 @@ body {
     min-width: 1440px;
 }
 
+.outer-box{
+    /*position: relative;*/
+    display: grid;
+    /*place-content: center;*/
+}
+
+.inner-box{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    justify-self: center;
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 50%;*/
+    /*transform: translateX(-50%) translateY(-50%);*/
+}
+
 .slider {
     background: linear-gradient(90deg, rgba(213, 32, 71, 0.8) 0%, rgba(238, 61, 27, 0.8) 100%), url("../images/Rectangle 3.png");
     background-size: cover;

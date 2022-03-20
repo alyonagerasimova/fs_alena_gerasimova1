@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.name{
+  font-size: 16px;
+}
+
+.menu{
+  position: absolute;
+  width: 330px;
+  height: 980px;
+  left: 25px;
+  top: 50px;
+}
+
+.menu__item, .create-playlist, .favourite-tracks, .my-playlists{
+
+  justify-items: start;
+  align-items: center;
+  width: 250px;
+  height: 55px;
+}
+
+.menu__item:hover{
+  background: rgba(29, 185, 84, 0.15);
+  border-radius: 10px;
+}
+
+.create-playlist{
+
+}
