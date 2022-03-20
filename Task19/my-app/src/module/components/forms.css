@@ -1,0 +1,68 @@
+.container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(120, 120, 120, 0.5);
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 99;
+    padding: 10px 0;
+    box-shadow: 1px 1px 20px 15px #8d8d8d;
+}
+
+.content {
+    width: 32%;
+    min-width: 240px;
+    background-color: #FFFFFF;
+    padding-top: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.form-group {
+    text-align: left;
+    margin: 0 70px 15px 70px;
+}
+
+.form-select-control{
+    padding-right: 10px;
+}
+
+.btn {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.65;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .2;
+}
+
+.btn:focus[enabled], .btn:hover[enabled] {
+    color: #000;
+    text-decoration: none;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.validation {
+    color: red;
+    background-color: #fddcdc;
+    font-size: 13px;
+    padding: 4px 2px;
+}
