@@ -1,0 +1,21 @@
+<ng-container *ngIf="!hidden">
+  <div class="main__decor" (click)="switchDetailsView()">
+    {{animal.kindOfAnimal + ': ' + animal.animalName}}
+    <div class="main__details"
+         [class._hidden]="!_isOpened">
+      <div>Дата рождения: {{animal.birthday}}</div>
+      <div>{{animal.breed}}</div>
+      <div>{{animal.gender}}</div>
+      <div>{{animal.hobby}}</div>
+      <div>{{animal.otherFeatures}}</div>
+    </div>
+  </div>
+  <div class="action-button">
+    <button class="edit"
+            [routerLink]="['/pet',animal.id]"
+    >Редактировать
+    </button>
+    <ng-content></ng-content>
+  </div>
+
+</ng-container>

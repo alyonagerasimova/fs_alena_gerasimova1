@@ -1,0 +1,51 @@
+@primary-color: white;
+@font-size-for-bold-text: 18px;
+@font-family-text: "Courier New", sans-serif;
+
+.main__details {
+  font-family: Algerian, sans-serif;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 14px;
+
+  &._hidden {
+    display: none;
+  }
+}
+
+.main__decor {
+  display: block;
+  padding: 10px 20px;
+  border-top: 2px solid #e0dddd;
+  color: #09080c;
+  font-size: @font-size-for-bold-text;
+  font-family: @font-family-text;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+    background: linear-gradient(
+      90deg, #a1a7b0 0%, #7d8394 100%);
+    color: @primary-color;
+  }
+}
+
+.edit {
+  margin: 5px 5px;
+  background-color: #a19094;
+  border-radius: 10px;
+  border: 1px solid #917c81;
+  font-size: 12px;
+  padding: 4px 5px;
+  &:hover {
+    background-color: #d7cacb;
+    border-color: #cbc3c4;
+    color: #2A2734;
+    cursor: pointer;
+  }
+}
+
+.action-button {
+  color: #FFFFFF;
+  font-family: "Footlight MT Light",sans-serif;
+}
